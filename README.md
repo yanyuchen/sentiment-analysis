@@ -11,7 +11,7 @@ To evaluate the performance of our sentiment analysis model, we compare its pred
 In conclusion, this project aims to provide insights into the effectiveness of sentiment analysis for predicting ratings based on the text of the reviews. The results of this study can be useful for businesses and organizations to gain a better understanding of their customer's opinions and improve their products or services accordingly.
 
 ## Contents
-Our project has been organized into separate Jupyter notebooks.
+Our project is organized into separate Jupyter notebooks as follows.
 <ol>
 <li><a href="html/data.html">Data Acquisition</a></li>
 <li><a href="html/merge.html">Merge Data across Sources</a></li>
@@ -21,3 +21,5 @@ Our project has been organized into separate Jupyter notebooks.
 <li><a href="html/comparision.html">Comparision</a></li>
 <li><a href="html/conclusions.html">Conclusions</a></li>
 </ol>
+
+The HTML template is provided by <a href = 'https://github.com/orderedlist'>orderedlist</a>. Syntax highlighting is provided on GitHub Pages by <a href = 'http://pygments.org'>Pygments</a>.
