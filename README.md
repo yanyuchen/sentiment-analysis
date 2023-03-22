@@ -16,8 +16,8 @@ Our project is organized into separate Jupyter notebooks as follows.
 <li><a href="html/data.html">Data Acquisition</a></li>
 <li><a href="html/merge.html">Merge Data across Sources</a></li>
 <li><a href="html/eda.html"> Exploratory Data Analysis</a></li>
-<li><a href="html/base.html">Naive Model</a></li>
-<li><a href="html/model.html">Scikit-learn Classifiers</a></li>
+<li><a href="html/naive.html">Naive Model</a></li>
+<li><a href="html/classifiers.html">Scikit-learn Classifiers</a></li>
 <li><a href="html/comparision.html">Comparision between Models</a></li>
 <li><a href="html/conclusions.html">Conclusions</a></li>
 </ol>
