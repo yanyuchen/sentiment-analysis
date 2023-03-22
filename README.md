@@ -1,4 +1,4 @@
-# Sentiment Analysis
+# Exploring the Relationship Between Text and Rating: A Sentiment Analysis Study
 This is our final project for STA220 in winter 2023. A collaborative work with <a href="https://github.com/wswu001">WunSyuan Wu</a>.
 
 ## Overview
