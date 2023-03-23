@@ -13,13 +13,13 @@ In conclusion, this project aims to provide insights into the effectiveness of s
 ## Contents
 Our project is organized into separate Jupyter notebooks as follows.
 <ol>
-<li><a href="html/data.html">Data Acquisition</a></li>
-<li><a href="html/merge.html">Merge Data across Sources</a></li>
+<li><a href="html/data_acquisition.html">Data Acquisition</a></li>
+<li><a href="html/data_merge.html">Merge Data across Sources</a></li>
 <li><a href="html/eda.html"> Exploratory Data Analysis</a></li>
 <li><a href="html/naive.html">Naive Approach with Pre-trained Model</a></li>
 <li><a href="html/classifiers.html">Additional Classifiers</a></li>
-<li><a href="html/comparision.html">Comparision between Models</a></li>
-<li><a href="html/conclusions.html">Conclusions</a></li>
+<li><a href="html/comparison.html">Comparison among Models</a></li>
+<li><a href="html/conclusion.html">Conclusion</a></li>
 </ol>
 
 The HTML template is provided by <a href = 'https://github.com/orderedlist'>orderedlist</a>. Syntax highlighting is provided on GitHub Pages by <a href = 'http://pygments.org'>Pygments</a>.
