@@ -36,7 +36,6 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 .highlight .m { color: var(--jp-mirror-editor-number-color) } /* Literal.Number */
 .highlight .s { color: var(--jp-mirror-editor-string-color) } /* Literal.String */
 .highlight .ow { color: var(--jp-mirror-editor-operator-color); font-weight: bold } /* Operator.Word */
-.highlight .pm { color: var(--jp-mirror-editor-punctuation-color) } /* Punctuation.Marker */
 .highlight .w { color: var(--jp-mirror-editor-variable-color) } /* Text.Whitespace */
 .highlight .mb { color: var(--jp-mirror-editor-number-color) } /* Literal.Number.Bin */
 .highlight .mf { color: var(--jp-mirror-editor-number-color) } /* Literal.Number.Float */
@@ -14465,6 +14464,10 @@ a.anchor-link {
   display: none;
 }
 
+.highlight  {
+  margin: 0.4em;
+}
+
 /* Input area styling */
 .jp-InputArea {
   overflow: hidden;
@@ -14474,26 +14477,9 @@ a.anchor-link {
   overflow: hidden;
 }
 
-.CodeMirror.cm-s-jupyter .highlight pre {
-/* weird, but --jp-code-padding defined to be 5px but 4px horizontal padding is hardcoded for pre.CodeMirror-line */
-  padding: var(--jp-code-padding) 4px;
+.CodeMirror pre {
   margin: 0;
-
-  font-family: inherit;
-  font-size: inherit;
-  line-height: inherit;
-  color: inherit;
-
-}
-
-.jp-OutputArea-output pre {
-  line-height: inherit;
-  font-family: inherit;
-}
-
-.jp-RenderedText pre {
-  color: var(--jp-content-font-color1);
-  font-size: var(--jp-code-font-size);
+  padding: 0;
 }
 
 /* Using table instead of flexbox so that we can use break-inside property */
@@ -14622,7 +14608,7 @@ body[data-format='mobile'] .jp-OutputArea-child .jp-OutputArea-output {
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-python"><pre><span></span><span class="kn">from</span> <span class="nn">selenium</span> <span class="kn">import</span> <span class="n">webdriver</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">selenium</span> <span class="kn">import</span> <span class="n">webdriver</span>
 <span class="kn">from</span> <span class="nn">selenium.webdriver.common.by</span> <span class="kn">import</span> <span class="n">By</span>
 <span class="kn">from</span> <span class="nn">selenium.webdriver.common.keys</span> <span class="kn">import</span> <span class="n">Keys</span>
 <span class="kn">from</span> <span class="nn">bs4</span> <span class="kn">import</span> <span class="n">BeautifulSoup</span>
@@ -14647,7 +14633,7 @@ body[data-format='mobile'] .jp-OutputArea-child .jp-OutputArea-output {
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-python"><pre><span></span><span class="n">driver</span> <span class="o">=</span> <span class="n">webdriver</span><span class="o">.</span><span class="n">Chrome</span><span class="p">(</span><span class="s2">&quot;/Users/alliewu/Desktop/DataScience_Projects/SF_Top_Attractions/chromedriver&quot;</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">driver</span> <span class="o">=</span> <span class="n">webdriver</span><span class="o">.</span><span class="n">Chrome</span><span class="p">(</span><span class="s2">"/Users/alliewu/Desktop/DataScience_Projects/SF_Top_Attractions/chromedriver"</span><span class="p">)</span>
 </pre></div>
 
      </div>
@@ -14663,45 +14649,45 @@ body[data-format='mobile'] .jp-OutputArea-child .jp-OutputArea-output {
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-python"><pre><span></span><span class="k">def</span> <span class="nf">scrape_review</span><span class="p">(</span><span class="n">name</span><span class="p">):</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">scrape_review</span><span class="p">(</span><span class="n">name</span><span class="p">):</span>
     <span class="n">username</span><span class="p">,</span> <span class="n">city</span><span class="p">,</span> <span class="n">country</span><span class="p">,</span> <span class="n">contribution</span><span class="p">,</span> <span class="n">title</span><span class="p">,</span> <span class="n">month</span><span class="p">,</span> <span class="n">year</span><span class="p">,</span> <span class="n">review</span><span class="p">,</span> <span class="n">ratings</span> <span class="o">=</span> <span class="p">[],[],[],[],[],[],[],[],[]</span>
     <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">26</span><span class="p">):</span>
-        <span class="n">review_chuncks</span> <span class="o">=</span> <span class="n">driver</span><span class="o">.</span><span class="n">find_element</span><span class="p">(</span><span class="n">By</span><span class="o">.</span><span class="n">CLASS_NAME</span><span class="p">,</span> <span class="s1">&#39;LbPSX&#39;</span><span class="p">)</span>
+        <span class="n">review_chuncks</span> <span class="o">=</span> <span class="n">driver</span><span class="o">.</span><span class="n">find_element</span><span class="p">(</span><span class="n">By</span><span class="o">.</span><span class="n">CLASS_NAME</span><span class="p">,</span> <span class="s1">'LbPSX'</span><span class="p">)</span>
         
-        <span class="n">chunck_list</span> <span class="o">=</span> <span class="n">review_chuncks</span><span class="o">.</span><span class="n">text</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">This review is the subjective opinion of a Tripadvisor member and not of Tripadvisor LLC. Tripadvisor performs checks on reviews.</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+        <span class="n">chunck_list</span> <span class="o">=</span> <span class="n">review_chuncks</span><span class="o">.</span><span class="n">text</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">'</span><span class="se">\n</span><span class="s1">This review is the subjective opinion of a Tripadvisor member and not of Tripadvisor LLC. Tripadvisor performs checks on reviews.</span><span class="se">\n</span><span class="s1">'</span><span class="p">)</span>
         <span class="n">chunck_list</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
 
         <span class="k">for</span> <span class="n">chunck</span> <span class="ow">in</span> <span class="n">chunck_list</span><span class="p">:</span>
             <span class="k">try</span><span class="p">:</span>
-                <span class="n">review_element</span> <span class="o">=</span> <span class="n">chunck</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+                <span class="n">review_element</span> <span class="o">=</span> <span class="n">chunck</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">'</span><span class="se">\n</span><span class="s1">'</span><span class="p">)</span>
 
                 <span class="c1"># element 1: username</span>
                 <span class="n">username</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">review_element</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">strip</span><span class="p">())</span>
                 
                 <span class="c1"># element 2,3,4:  city, country, contribution</span>
                 <span class="n">mix_string</span> <span class="o">=</span> <span class="n">review_element</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
-                <span class="n">pattern</span> <span class="o">=</span> <span class="sa">r</span><span class="s1">&#39;([\w\s]+),\s*([\w\s]+)\s*(\d+)\s*contributions&#39;</span>
+                <span class="n">pattern</span> <span class="o">=</span> <span class="sa">r</span><span class="s1">'([\w\s]+),\s*([\w\s]+)\s*(\d+)\s*contributions'</span>
                 <span class="n">match</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="n">pattern</span><span class="p">,</span> <span class="n">mix_string</span><span class="p">)</span>
                 <span class="k">if</span> <span class="n">match</span><span class="p">:</span>
                     <span class="n">city</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">match</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">1</span><span class="p">))</span>
                     <span class="n">country</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">match</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">2</span><span class="p">))</span>
                     <span class="n">contribution</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">match</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">3</span><span class="p">))</span>
                 <span class="k">else</span><span class="p">:</span>
-                    <span class="n">city</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;None&#39;</span><span class="p">)</span>
-                    <span class="n">country</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;None&#39;</span><span class="p">)</span>
-                    <span class="n">contribution</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">review_element</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;contributions&#39;</span><span class="p">,</span><span class="s1">&#39;&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">strip</span><span class="p">())</span>
+                    <span class="n">city</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">'None'</span><span class="p">)</span>
+                    <span class="n">country</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">'None'</span><span class="p">)</span>
+                    <span class="n">contribution</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">review_element</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">'contributions'</span><span class="p">,</span><span class="s1">''</span><span class="p">)</span><span class="o">.</span><span class="n">strip</span><span class="p">())</span>
                 
                 <span class="c1"># element 5: title</span>
                 <span class="n">title</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">review_element</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="o">.</span><span class="n">strip</span><span class="p">())</span>
                 
                 <span class="c1"># element 6,7: month, year</span>
-                <span class="n">element4</span> <span class="o">=</span> <span class="n">review_element</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39; • &#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+                <span class="n">element4</span> <span class="o">=</span> <span class="n">review_element</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">' • '</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
                 <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">element4</span><span class="o">.</span><span class="n">split</span><span class="p">())</span> <span class="o">&gt;=</span> <span class="mi">2</span><span class="p">:</span>
                     <span class="n">month</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">element4</span><span class="o">.</span><span class="n">split</span><span class="p">()[</span><span class="mi">0</span><span class="p">])</span>
                     <span class="n">year</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">element4</span><span class="o">.</span><span class="n">split</span><span class="p">()[</span><span class="mi">1</span><span class="p">])</span>
                 <span class="k">else</span><span class="p">:</span>
-                    <span class="n">month</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;None&#39;</span><span class="p">)</span>
-                    <span class="n">year</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;None&#39;</span><span class="p">)</span>
+                    <span class="n">month</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">'None'</span><span class="p">)</span>
+                    <span class="n">year</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">'None'</span><span class="p">)</span>
                 
                 <span class="c1"># element 8: review</span>
                 <span class="n">review</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">review_element</span><span class="p">[</span><span class="mi">5</span><span class="p">]</span><span class="o">.</span><span class="n">strip</span><span class="p">())</span>
@@ -14710,29 +14696,29 @@ body[data-format='mobile'] .jp-OutputArea-child .jp-OutputArea-output {
                 <span class="k">continue</span>
         
         <span class="c1"># element 9: rating</span>
-        <span class="n">rating_elements</span> <span class="o">=</span> <span class="n">review_chuncks</span><span class="o">.</span><span class="n">find_elements</span><span class="p">(</span><span class="n">By</span><span class="o">.</span><span class="n">CLASS_NAME</span><span class="p">,</span> <span class="s1">&#39;UctUV.d.H0&#39;</span><span class="p">)</span>
+        <span class="n">rating_elements</span> <span class="o">=</span> <span class="n">review_chuncks</span><span class="o">.</span><span class="n">find_elements</span><span class="p">(</span><span class="n">By</span><span class="o">.</span><span class="n">CLASS_NAME</span><span class="p">,</span> <span class="s1">'UctUV.d.H0'</span><span class="p">)</span>
         <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">rating_elements</span><span class="p">)):</span>
             <span class="k">try</span><span class="p">:</span>
-                <span class="n">rating_string</span> <span class="o">=</span> <span class="n">rating_elements</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">get_attribute</span><span class="p">(</span><span class="s2">&quot;aria-label&quot;</span><span class="p">)</span>
+                <span class="n">rating_string</span> <span class="o">=</span> <span class="n">rating_elements</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">get_attribute</span><span class="p">(</span><span class="s2">"aria-label"</span><span class="p">)</span>
                 <span class="n">rating</span> <span class="o">=</span> <span class="n">rating_string</span><span class="o">.</span><span class="n">split</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span>
                 <span class="n">ratings</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">rating</span><span class="p">)</span>
             <span class="k">except</span> <span class="ne">IndexError</span><span class="p">:</span>
                 <span class="k">continue</span>
                 
-        <span class="n">driver</span><span class="o">.</span><span class="n">find_element</span><span class="p">(</span><span class="n">By</span><span class="o">.</span><span class="n">XPATH</span><span class="p">,</span> <span class="s1">&#39;//*[@id=&quot;tab-data-qa-reviews-0&quot;]/div/div[5]/div/div[11]/div[1]/div/div[1]/div[2]/div/a&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">click</span><span class="p">()</span>
+        <span class="n">driver</span><span class="o">.</span><span class="n">find_element</span><span class="p">(</span><span class="n">By</span><span class="o">.</span><span class="n">XPATH</span><span class="p">,</span> <span class="s1">'//*[@id="tab-data-qa-reviews-0"]/div/div[5]/div/div[11]/div[1]/div/div[1]/div[2]/div/a'</span><span class="p">)</span><span class="o">.</span><span class="n">click</span><span class="p">()</span>
         <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
 
     <span class="n">attraction</span> <span class="o">=</span> <span class="p">[</span><span class="n">name</span><span class="p">]</span><span class="o">*</span><span class="nb">len</span><span class="p">(</span><span class="n">username</span><span class="p">)</span>
-    <span class="n">review_dict</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;attraction&#39;</span><span class="p">:</span><span class="n">attraction</span><span class="p">,</span>
-                <span class="s1">&#39;username&#39;</span><span class="p">:</span><span class="n">username</span><span class="p">,</span>
-                <span class="s1">&#39;city&#39;</span><span class="p">:</span> <span class="n">city</span><span class="p">,</span>
-                <span class="s1">&#39;country&#39;</span><span class="p">:</span> <span class="n">country</span><span class="p">,</span>
-                <span class="s1">&#39;contribution&#39;</span><span class="p">:</span> <span class="n">contribution</span><span class="p">,</span>
-                <span class="s1">&#39;title&#39;</span><span class="p">:</span> <span class="n">title</span><span class="p">,</span>
-                <span class="s1">&#39;month&#39;</span><span class="p">:</span> <span class="n">month</span><span class="p">,</span>
-                <span class="s1">&#39;year&#39;</span><span class="p">:</span> <span class="n">year</span><span class="p">,</span>
-                <span class="s1">&#39;review&#39;</span><span class="p">:</span> <span class="n">review</span><span class="p">,</span>
-                <span class="s1">&#39;rating&#39;</span><span class="p">:</span> <span class="n">ratings</span><span class="p">}</span>
+    <span class="n">review_dict</span> <span class="o">=</span> <span class="p">{</span><span class="s1">'attraction'</span><span class="p">:</span><span class="n">attraction</span><span class="p">,</span>
+                <span class="s1">'username'</span><span class="p">:</span><span class="n">username</span><span class="p">,</span>
+                <span class="s1">'city'</span><span class="p">:</span> <span class="n">city</span><span class="p">,</span>
+                <span class="s1">'country'</span><span class="p">:</span> <span class="n">country</span><span class="p">,</span>
+                <span class="s1">'contribution'</span><span class="p">:</span> <span class="n">contribution</span><span class="p">,</span>
+                <span class="s1">'title'</span><span class="p">:</span> <span class="n">title</span><span class="p">,</span>
+                <span class="s1">'month'</span><span class="p">:</span> <span class="n">month</span><span class="p">,</span>
+                <span class="s1">'year'</span><span class="p">:</span> <span class="n">year</span><span class="p">,</span>
+                <span class="s1">'review'</span><span class="p">:</span> <span class="n">review</span><span class="p">,</span>
+                <span class="s1">'rating'</span><span class="p">:</span> <span class="n">ratings</span><span class="p">}</span>
     <span class="n">review</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">review_dict</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">review</span>
 </pre></div>
@@ -14750,34 +14736,34 @@ body[data-format='mobile'] .jp-OutputArea-child .jp-OutputArea-output {
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-python"><pre><span></span><span class="n">place</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;SF_places.csv&#39;</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">place</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">'SF_places.csv'</span><span class="p">)</span>
 <span class="n">place_rating</span> <span class="o">=</span> <span class="p">[]</span>
-<span class="n">all_reviews</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;attraction&#39;</span><span class="p">,</span> <span class="s1">&#39;username&#39;</span><span class="p">,</span> <span class="s1">&#39;city&#39;</span><span class="p">,</span> <span class="s1">&#39;country&#39;</span><span class="p">,</span> 
-                           <span class="s1">&#39;contribution&#39;</span><span class="p">,</span> <span class="s1">&#39;title&#39;</span><span class="p">,</span> <span class="s1">&#39;month&#39;</span><span class="p">,</span> <span class="s1">&#39;year&#39;</span><span class="p">,</span> <span class="s1">&#39;review&#39;</span><span class="p">,</span> <span class="s1">&#39;rating&#39;</span><span class="p">])</span>
+<span class="n">all_reviews</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">'attraction'</span><span class="p">,</span> <span class="s1">'username'</span><span class="p">,</span> <span class="s1">'city'</span><span class="p">,</span> <span class="s1">'country'</span><span class="p">,</span> 
+                           <span class="s1">'contribution'</span><span class="p">,</span> <span class="s1">'title'</span><span class="p">,</span> <span class="s1">'month'</span><span class="p">,</span> <span class="s1">'year'</span><span class="p">,</span> <span class="s1">'review'</span><span class="p">,</span> <span class="s1">'rating'</span><span class="p">])</span>
 <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">place</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]):</span> <span class="c1">#place.shape[0]</span>
     <span class="k">try</span><span class="p">:</span>
-        <span class="n">url</span> <span class="o">=</span> <span class="n">place</span><span class="p">[</span><span class="s1">&#39;url&#39;</span><span class="p">][</span><span class="n">i</span><span class="p">]</span>
+        <span class="n">url</span> <span class="o">=</span> <span class="n">place</span><span class="p">[</span><span class="s1">'url'</span><span class="p">][</span><span class="n">i</span><span class="p">]</span>
         <span class="n">driver</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
         <span class="n">driver</span><span class="o">.</span><span class="n">implicitly_wait</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
-        <span class="n">driver</span><span class="o">.</span><span class="n">execute_script</span><span class="p">(</span><span class="s2">&quot;window.scrollBy(0, 2000);&quot;</span><span class="p">)</span>
+        <span class="n">driver</span><span class="o">.</span><span class="n">execute_script</span><span class="p">(</span><span class="s2">"window.scrollBy(0, 2000);"</span><span class="p">)</span>
         <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
 
-        <span class="n">language_button</span> <span class="o">=</span> <span class="s1">&#39;//*[@id=&quot;tab-data-qa-reviews-0&quot;]/div/div[1]/div/div/div[2]/div/div/div[2]/div/div/div/button&#39;</span>
-        <span class="n">all_language_button</span> <span class="o">=</span> <span class="s1">&#39;//*[@id=&quot;menu-item-all&quot;]&#39;</span>
+        <span class="n">language_button</span> <span class="o">=</span> <span class="s1">'//*[@id="tab-data-qa-reviews-0"]/div/div[1]/div/div/div[2]/div/div/div[2]/div/div/div/button'</span>
+        <span class="n">all_language_button</span> <span class="o">=</span> <span class="s1">'//*[@id="menu-item-all"]'</span>
         <span class="n">driver</span><span class="o">.</span><span class="n">find_element</span><span class="p">(</span><span class="n">By</span><span class="o">.</span><span class="n">XPATH</span><span class="p">,</span> <span class="n">language_button</span><span class="p">)</span><span class="o">.</span><span class="n">click</span><span class="p">()</span>
         <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
         <span class="n">driver</span><span class="o">.</span><span class="n">find_element</span><span class="p">(</span><span class="n">By</span><span class="o">.</span><span class="n">XPATH</span><span class="p">,</span> <span class="n">all_language_button</span><span class="p">)</span><span class="o">.</span><span class="n">click</span><span class="p">()</span>
         <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
 
-        <span class="n">place_rating</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">driver</span><span class="o">.</span><span class="n">find_element</span><span class="p">(</span><span class="n">By</span><span class="o">.</span><span class="n">CLASS_NAME</span><span class="p">,</span> <span class="s1">&#39;biGQs._P.fiohW.hzzSG.uuBRH&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
+        <span class="n">place_rating</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">driver</span><span class="o">.</span><span class="n">find_element</span><span class="p">(</span><span class="n">By</span><span class="o">.</span><span class="n">CLASS_NAME</span><span class="p">,</span> <span class="s1">'biGQs._P.fiohW.hzzSG.uuBRH'</span><span class="p">)</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
         
-        <span class="n">name</span> <span class="o">=</span> <span class="n">place</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">][</span><span class="n">i</span><span class="p">]</span>
+        <span class="n">name</span> <span class="o">=</span> <span class="n">place</span><span class="p">[</span><span class="s1">'name'</span><span class="p">][</span><span class="n">i</span><span class="p">]</span>
         <span class="n">reviews</span> <span class="o">=</span> <span class="n">scrape_review</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="n">name</span><span class="p">)</span>
         
         <span class="n">all_reviews</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">all_reviews</span><span class="p">,</span> <span class="n">reviews</span><span class="p">])</span>
     
     <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
-        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;An error occurred while processing row </span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"An error occurred while processing row </span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
         <span class="k">continue</span>
 </pre></div>
 
@@ -14786,7 +14772,7 @@ body[data-format='mobile'] .jp-OutputArea-child .jp-OutputArea-output {
 </div>
 </div>
 
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -14794,12 +14780,134 @@ body[data-format='mobile'] .jp-OutputArea-child .jp-OutputArea-output {
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-python"><pre><span></span><span class="n">all_reviews</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">all_reviews</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
 </pre></div>
 
      </div>
 </div>
 </div>
+</div>
+
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[&nbsp;]:</div>
+
+
+
+<div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/html">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>attraction</th>
+      <th>username</th>
+      <th>city</th>
+      <th>country</th>
+      <th>contribution</th>
+      <th>title</th>
+      <th>month</th>
+      <th>year</th>
+      <th>review</th>
+      <th>rating</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Alcatraz Island</td>
+      <td>Amber N W</td>
+      <td>None</td>
+      <td>None</td>
+      <td>5</td>
+      <td>FUN FOR ALL AGES</td>
+      <td>Mar</td>
+      <td>2023</td>
+      <td>My family took the tour ( BUY TICKETS IN ADVAN...</td>
+      <td>5.0</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Alcatraz Island</td>
+      <td>Gord P</td>
+      <td>None</td>
+      <td>None</td>
+      <td>16</td>
+      <td>great tour</td>
+      <td>Feb</td>
+      <td>2023</td>
+      <td>This is a must stop if you are in San Fran!!! ...</td>
+      <td>5.0</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Alcatraz Island</td>
+      <td>Jess</td>
+      <td>None</td>
+      <td>None</td>
+      <td>4</td>
+      <td>Must See</td>
+      <td>Mar</td>
+      <td>2023</td>
+      <td>I did not expect to enjoy the tour as much as ...</td>
+      <td>5.0</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>Alcatraz Island</td>
+      <td>Christine J</td>
+      <td>None</td>
+      <td>None</td>
+      <td>13</td>
+      <td>Unsafe area DO NOT GO!</td>
+      <td>Mar</td>
+      <td>2023</td>
+      <td>San Francisco is completely unsafe. We bought ...</td>
+      <td>1.0</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>Alcatraz Island</td>
+      <td>Yankeehoya</td>
+      <td>Doha</td>
+      <td>Qatar25</td>
+      <td>8</td>
+      <td>No Additional Tour Guide Needed</td>
+      <td>Mar</td>
+      <td>2023</td>
+      <td>I had a 13-hour layover in San Francisco And I...</td>
+      <td>4.0</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+
+</div>
+
+</div>
+
 </div>
 
 </div>
@@ -14825,7 +14933,7 @@ body[data-format='mobile'] .jp-OutputArea-child .jp-OutputArea-output {
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-python"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 <span class="kn">import</span> <span class="nn">time</span>
 <span class="kn">import</span> <span class="nn">requests</span>
 <span class="kn">import</span> <span class="nn">json</span>
@@ -14844,25 +14952,25 @@ body[data-format='mobile'] .jp-OutputArea-child .jp-OutputArea-output {
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-python"><pre><span></span><span class="c1"># can only get n_review &lt;= 3, n_business &lt;= 50, review text with certain pieces</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># can only get n_review &lt;= 3, n_business &lt;= 50, review text with certain pieces</span>
 
-<span class="k">def</span> <span class="nf">get_yelp</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">loc</span> <span class="o">=</span> <span class="s2">&quot;San Francisco, CA&quot;</span><span class="p">,</span> <span class="n">t_sleep</span> <span class="o">=</span> <span class="mf">0.1</span><span class="p">,</span> <span class="n">n_business</span> <span class="o">=</span> <span class="mi">50</span><span class="p">,</span> <span class="n">n_review</span> <span class="o">=</span> <span class="mi">3</span><span class="p">):</span>
-    <span class="n">headers</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;Authorization&quot;</span><span class="p">:</span> <span class="s2">&quot;Bearer </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">key</span><span class="p">}</span>
-    <span class="n">url</span> <span class="o">=</span> <span class="s2">&quot;https://api.yelp.com/v3/businesses/search&quot;</span>
-    <span class="n">params</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;limit&quot;</span><span class="p">:</span> <span class="n">n_business</span><span class="p">,</span> <span class="s2">&quot;location&quot;</span><span class="p">:</span> <span class="n">loc</span><span class="p">}</span>
+<span class="k">def</span> <span class="nf">get_yelp</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">loc</span> <span class="o">=</span> <span class="s2">"San Francisco, CA"</span><span class="p">,</span> <span class="n">t_sleep</span> <span class="o">=</span> <span class="mf">0.1</span><span class="p">,</span> <span class="n">n_business</span> <span class="o">=</span> <span class="mi">50</span><span class="p">,</span> <span class="n">n_review</span> <span class="o">=</span> <span class="mi">3</span><span class="p">):</span>
+    <span class="n">headers</span> <span class="o">=</span> <span class="p">{</span><span class="s2">"Authorization"</span><span class="p">:</span> <span class="s2">"Bearer </span><span class="si">%s</span><span class="s2">"</span> <span class="o">%</span> <span class="n">key</span><span class="p">}</span>
+    <span class="n">url</span> <span class="o">=</span> <span class="s2">"https://api.yelp.com/v3/businesses/search"</span>
+    <span class="n">params</span><span class="o">=</span><span class="p">{</span><span class="s2">"limit"</span><span class="p">:</span> <span class="n">n_business</span><span class="p">,</span> <span class="s2">"location"</span><span class="p">:</span> <span class="n">loc</span><span class="p">}</span>
     <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="n">params</span><span class="p">)</span> <span class="c1">#The API does not return businesses without any reviews</span>
-    <span class="n">businesses</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">()[</span><span class="s2">&quot;businesses&quot;</span><span class="p">]</span>
+    <span class="n">businesses</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">()[</span><span class="s2">"businesses"</span><span class="p">]</span>
     <span class="n">businesses_pd</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">([</span><span class="n">business</span> <span class="k">for</span> <span class="n">business</span> <span class="ow">in</span> <span class="n">businesses</span><span class="p">])</span>
     <span class="n">appended_data</span> <span class="o">=</span> <span class="p">[</span><span class="kc">None</span><span class="p">]</span> <span class="o">*</span> <span class="n">n_business</span>
     <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span>
     <span class="k">for</span> <span class="n">business</span> <span class="ow">in</span> <span class="n">businesses</span><span class="p">:</span>
-        <span class="n">url2</span> <span class="o">=</span> <span class="s2">&quot;https://api.yelp.com/v3/businesses/&quot;</span> <span class="o">+</span> <span class="n">business</span><span class="p">[</span><span class="s1">&#39;id&#39;</span><span class="p">]</span> <span class="o">+</span> <span class="s1">&#39;/reviews&#39;</span>
-        <span class="n">params2</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;limit&quot;</span><span class="p">:</span> <span class="n">n_review</span><span class="p">,</span> <span class="s2">&quot;sort_by&quot;</span><span class="p">:</span> <span class="s2">&quot;newest&quot;</span><span class="p">}</span>
+        <span class="n">url2</span> <span class="o">=</span> <span class="s2">"https://api.yelp.com/v3/businesses/"</span> <span class="o">+</span> <span class="n">business</span><span class="p">[</span><span class="s1">'id'</span><span class="p">]</span> <span class="o">+</span> <span class="s1">'/reviews'</span>
+        <span class="n">params2</span><span class="o">=</span><span class="p">{</span><span class="s2">"limit"</span><span class="p">:</span> <span class="n">n_review</span><span class="p">,</span> <span class="s2">"sort_by"</span><span class="p">:</span> <span class="s2">"newest"</span><span class="p">}</span>
         <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="n">t_sleep</span><span class="p">)</span>
         <span class="n">response2</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url2</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="n">params2</span><span class="p">)</span>
-        <span class="n">reviews</span> <span class="o">=</span> <span class="n">response2</span><span class="o">.</span><span class="n">json</span><span class="p">()[</span><span class="s2">&quot;reviews&quot;</span><span class="p">]</span>
+        <span class="n">reviews</span> <span class="o">=</span> <span class="n">response2</span><span class="o">.</span><span class="n">json</span><span class="p">()[</span><span class="s2">"reviews"</span><span class="p">]</span>
         <span class="n">reviews_pd</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">([</span><span class="n">review</span> <span class="k">for</span> <span class="n">review</span> <span class="ow">in</span> <span class="n">reviews</span><span class="p">])</span>
-        <span class="n">reviews_pd</span><span class="p">[</span><span class="s1">&#39;business_id&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">business</span><span class="p">[</span><span class="s1">&#39;id&#39;</span><span class="p">]</span>
+        <span class="n">reviews_pd</span><span class="p">[</span><span class="s1">'business_id'</span><span class="p">]</span> <span class="o">=</span> <span class="n">business</span><span class="p">[</span><span class="s1">'id'</span><span class="p">]</span>
         <span class="n">appended_data</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">reviews_pd</span>
         <span class="n">i</span> <span class="o">+=</span> <span class="mi">1</span>
     <span class="k">return</span> <span class="p">[</span><span class="n">businesses_pd</span><span class="p">,</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">(</span><span class="n">appended_data</span><span class="p">,</span> <span class="n">ignore_index</span><span class="o">=</span><span class="kc">True</span><span class="p">)]</span>
@@ -14881,7 +14989,7 @@ body[data-format='mobile'] .jp-OutputArea-child .jp-OutputArea-output {
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-python"><pre><span></span><span class="n">api_key</span> <span class="o">=</span> <span class="s2">&quot;scWgvjtjmz1UMUb9LD1q6C8qDEZkOrNjv6ZVrf9jFU4GurLk9QlA8CC3-Ac1GWEAUEvG7weRAOp-Uo1ay-kMtOPLsM7UFlY4FDlpurtYwrVPNen-j9WMsjHw7o4ZZHYx&quot;</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">api_key</span> <span class="o">=</span> <span class="s2">"scWgvjtjmz1UMUb9LD1q6C8qDEZkOrNjv6ZVrf9jFU4GurLk9QlA8CC3-Ac1GWEAUEvG7weRAOp-Uo1ay-kMtOPLsM7UFlY4FDlpurtYwrVPNen-j9WMsjHw7o4ZZHYx"</span>
 <span class="n">businesses</span><span class="p">,</span> <span class="n">reviews</span> <span class="o">=</span> <span class="n">get_yelp</span><span class="p">(</span><span class="n">key</span> <span class="o">=</span> <span class="n">api_key</span><span class="p">)</span>
 </pre></div>
 
@@ -14890,7 +14998,7 @@ body[data-format='mobile'] .jp-OutputArea-child .jp-OutputArea-output {
 </div>
 </div>
 
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -14898,7 +15006,7 @@ body[data-format='mobile'] .jp-OutputArea-child .jp-OutputArea-output {
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-python"><pre><span></span><span class="n">businesses</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">businesses</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
 </pre></div>
 
      </div>
@@ -14906,7 +15014,165 @@ body[data-format='mobile'] .jp-OutputArea-child .jp-OutputArea-output {
 </div>
 </div>
 
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[&nbsp;]:</div>
+
+
+
+<div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/html">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>id</th>
+      <th>alias</th>
+      <th>name</th>
+      <th>image_url</th>
+      <th>is_closed</th>
+      <th>url</th>
+      <th>review_count</th>
+      <th>categories</th>
+      <th>rating</th>
+      <th>coordinates</th>
+      <th>transactions</th>
+      <th>price</th>
+      <th>location</th>
+      <th>phone</th>
+      <th>display_phone</th>
+      <th>distance</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>wGl_DyNxSv8KUtYgiuLhmA</td>
+      <td>bi-rite-creamery-san-francisco</td>
+      <td>Bi-Rite Creamery</td>
+      <td>https://s3-media3.fl.yelpcdn.com/bphoto/ZFLw9l...</td>
+      <td>False</td>
+      <td>https://www.yelp.com/biz/bi-rite-creamery-san-...</td>
+      <td>10031</td>
+      <td>[{'alias': 'icecream', 'title': 'Ice Cream &amp; F...</td>
+      <td>4.5</td>
+      <td>{'latitude': 37.761591, 'longitude': -122.425717}</td>
+      <td>['delivery']</td>
+      <td>$$</td>
+      <td>{'address1': '3692 18th St', 'address2': None,...</td>
+      <td>1.415627e+10</td>
+      <td>(415) 626-5600</td>
+      <td>946.386739</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>lJAGnYzku5zSaLnQ_T6_GQ</td>
+      <td>brendas-french-soul-food-san-francisco-6</td>
+      <td>Brenda's French Soul Food</td>
+      <td>https://s3-media4.fl.yelpcdn.com/bphoto/VJ865E...</td>
+      <td>False</td>
+      <td>https://www.yelp.com/biz/brendas-french-soul-f...</td>
+      <td>11992</td>
+      <td>[{'alias': 'breakfast_brunch', 'title': 'Break...</td>
+      <td>4.0</td>
+      <td>{'latitude': 37.78291531984934, 'longitude': -...</td>
+      <td>['delivery']</td>
+      <td>$$</td>
+      <td>{'address1': '652 Polk St', 'address2': '', 'a...</td>
+      <td>1.415346e+10</td>
+      <td>(415) 345-8100</td>
+      <td>2893.406622</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>WavvLdfdP6g8aZTtbBQHTw</td>
+      <td>gary-danko-san-francisco</td>
+      <td>Gary Danko</td>
+      <td>https://s3-media3.fl.yelpcdn.com/bphoto/eyYUz3...</td>
+      <td>False</td>
+      <td>https://www.yelp.com/biz/gary-danko-san-franci...</td>
+      <td>5828</td>
+      <td>[{'alias': 'newamerican', 'title': 'American (...</td>
+      <td>4.5</td>
+      <td>{'latitude': 37.80587, 'longitude': -122.42058}</td>
+      <td>[]</td>
+      <td>$$$$</td>
+      <td>{'address1': '800 N Point St', 'address2': '',...</td>
+      <td>1.415749e+10</td>
+      <td>(415) 749-2060</td>
+      <td>5191.341803</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>76smcUUGRvq3k1MVPUXbnA</td>
+      <td>mitchells-ice-cream-san-francisco</td>
+      <td>Mitchells Ice Cream</td>
+      <td>https://s3-media2.fl.yelpcdn.com/bphoto/f4lzrs...</td>
+      <td>False</td>
+      <td>https://www.yelp.com/biz/mitchells-ice-cream-s...</td>
+      <td>4690</td>
+      <td>[{'alias': 'icecream', 'title': 'Ice Cream &amp; F...</td>
+      <td>4.5</td>
+      <td>{'latitude': 37.744221, 'longitude': -122.422791}</td>
+      <td>['pickup', 'delivery']</td>
+      <td>$</td>
+      <td>{'address1': '688 San Jose Ave', 'address2': '...</td>
+      <td>1.415648e+10</td>
+      <td>(415) 648-2300</td>
+      <td>2209.260424</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>ri7UUYmx21AgSpRsf4-9QA</td>
+      <td>tartine-bakery-san-francisco-3</td>
+      <td>Tartine Bakery</td>
+      <td>https://s3-media4.fl.yelpcdn.com/bphoto/QRbC0T...</td>
+      <td>False</td>
+      <td>https://www.yelp.com/biz/tartine-bakery-san-fr...</td>
+      <td>8715</td>
+      <td>[{'alias': 'bakeries', 'title': 'Bakeries'}, {...</td>
+      <td>4.0</td>
+      <td>{'latitude': 37.76131, 'longitude': -122.42431}</td>
+      <td>['delivery']</td>
+      <td>$$</td>
+      <td>{'address1': '600 Guerrero St', 'address2': ''...</td>
+      <td>1.415487e+10</td>
+      <td>(415) 487-2600</td>
+      <td>1087.638933</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -14914,12 +15180,116 @@ body[data-format='mobile'] .jp-OutputArea-child .jp-OutputArea-output {
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-python"><pre><span></span><span class="n">reviews</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">reviews</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
 </pre></div>
 
      </div>
 </div>
 </div>
+</div>
+
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[&nbsp;]:</div>
+
+
+
+<div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/html">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>id</th>
+      <th>url</th>
+      <th>text</th>
+      <th>rating</th>
+      <th>time_created</th>
+      <th>user</th>
+      <th>business_id</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>XeBZmAzdhswpWiQYe6sTcw</td>
+      <td>https://www.yelp.com/biz/bi-rite-creamery-san-...</td>
+      <td>Got the Earl Gray + Pina colada and it was SO ...</td>
+      <td>5</td>
+      <td>2023-03-12 11:26:29</td>
+      <td>{'id': 'J_iJFYQp5y8fwcz-BdUEDQ', 'profile_url'...</td>
+      <td>wGl_DyNxSv8KUtYgiuLhmA</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>FuF8jvLV0olpgWbNQ2jHZg</td>
+      <td>https://www.yelp.com/biz/bi-rite-creamery-san-...</td>
+      <td>My review is not on the ice cream. The ice cre...</td>
+      <td>1</td>
+      <td>2023-03-19 16:50:01</td>
+      <td>{'id': 'T_yEM-V-vmbODnGqUGi--g', 'profile_url'...</td>
+      <td>wGl_DyNxSv8KUtYgiuLhmA</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>ruuEFbw8S0wQKZ9UN0-8tg</td>
+      <td>https://www.yelp.com/biz/bi-rite-creamery-san-...</td>
+      <td>2/25/2023 - A delicious end to our date night ...</td>
+      <td>5</td>
+      <td>2023-02-26 01:34:44</td>
+      <td>{'id': '84oPkNdCcisrtOmYK_ACwA', 'profile_url'...</td>
+      <td>wGl_DyNxSv8KUtYgiuLhmA</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>eBDHqdq65uP6JAMs24q3tQ</td>
+      <td>https://www.yelp.com/biz/brendas-french-soul-f...</td>
+      <td>Many French toast shops do not handle it prope...</td>
+      <td>5</td>
+      <td>2023-03-03 22:55:42</td>
+      <td>{'id': '5TpUy6HRIDhH3JvQlm8LBA', 'profile_url'...</td>
+      <td>lJAGnYzku5zSaLnQ_T6_GQ</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>IXYJkV13UIjG21CMMMy8kQ</td>
+      <td>https://www.yelp.com/biz/brendas-french-soul-f...</td>
+      <td>First and foremost, let's talk about Brenda's ...</td>
+      <td>5</td>
+      <td>2023-03-09 18:43:35</td>
+      <td>{'id': 'qizLZcjOtLwk9v-pjMn2sg', 'profile_url'...</td>
+      <td>lJAGnYzku5zSaLnQ_T6_GQ</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+
+</div>
+
+</div>
+
 </div>
 
 </div>
@@ -14941,7 +15311,7 @@ body[data-format='mobile'] .jp-OutputArea-child .jp-OutputArea-output {
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-python"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">datetime</span><span class="p">,</span> <span class="n">timedelta</span>
 </pre></div>
@@ -14959,9 +15329,8 @@ body[data-format='mobile'] .jp-OutputArea-child .jp-OutputArea-output {
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-python"><pre><span></span><span class="n">place</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;SF_places.csv&#39;</span><span class="p">)</span>
-<span class="n">csv_name</span> <span class="o">=</span> <span class="err">!</span><span class="n">ls</span> <span class="n">new_google_review</span>
-<span class="n">csv_name</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">place</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">'SF_places.csv'</span><span class="p">)</span>
+<span class="n">csv_name</span> <span class="o">=</span> <span class="o">!</span>ls new_google_review
 </pre></div>
 
      </div>
@@ -14977,18 +15346,18 @@ body[data-format='mobile'] .jp-OutputArea-child .jp-OutputArea-output {
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-python"><pre><span></span><span class="k">def</span> <span class="nf">load_data</span><span class="p">(</span><span class="n">filename</span><span class="p">):</span>
-    <span class="n">data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;/Users/alliewu/Desktop/DataScience_Projects/SF_Top_Attractions/new_google_review/</span><span class="si">{</span><span class="n">filename</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">load_data</span><span class="p">(</span><span class="n">filename</span><span class="p">):</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="sa">f</span><span class="s1">'/Users/alliewu/Desktop/DataScience_Projects/SF_Top_Attractions/new_google_review/</span><span class="si">{</span><span class="n">filename</span><span class="si">}</span><span class="s1">'</span><span class="p">)</span>
     
     <span class="c1"># Remove the prefix before the underscore</span>
-    <span class="n">filename</span> <span class="o">=</span> <span class="n">filename</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;_&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span>
+    <span class="n">filename</span> <span class="o">=</span> <span class="n">filename</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">'_'</span><span class="p">,</span> <span class="mi">1</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span>
 
     <span class="c1"># Remove the suffix after the dot</span>
-    <span class="n">filename</span> <span class="o">=</span> <span class="n">filename</span><span class="o">.</span><span class="n">rsplit</span><span class="p">(</span><span class="s1">&#39;.&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">filename</span> <span class="o">=</span> <span class="n">filename</span><span class="o">.</span><span class="n">rsplit</span><span class="p">(</span><span class="s1">'.'</span><span class="p">,</span> <span class="mi">1</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
 
     <span class="c1"># Replace underscores with spaces</span>
-    <span class="n">filename</span> <span class="o">=</span> <span class="n">filename</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;_&#39;</span><span class="p">,</span> <span class="s1">&#39; &#39;</span><span class="p">)</span>
-    <span class="n">data</span><span class="p">[</span><span class="s1">&#39;attraction&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="n">filename</span><span class="p">]</span><span class="o">*</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+    <span class="n">filename</span> <span class="o">=</span> <span class="n">filename</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">'_'</span><span class="p">,</span> <span class="s1">' '</span><span class="p">)</span>
+    <span class="n">data</span><span class="p">[</span><span class="s1">'attraction'</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="n">filename</span><span class="p">]</span><span class="o">*</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
     <span class="k">return</span> <span class="n">data</span>
 </pre></div>
 
@@ -15005,12 +15374,12 @@ body[data-format='mobile'] .jp-OutputArea-child .jp-OutputArea-output {
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-python"><pre><span></span><span class="n">data</span> <span class="o">=</span> <span class="n">load_data</span><span class="p">(</span><span class="s1">&#39;google_Adventure_Playground.csv&#39;</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">data</span> <span class="o">=</span> <span class="n">load_data</span><span class="p">(</span><span class="s1">'google_Adventure_Playground.csv'</span><span class="p">)</span>
 <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="nb">len</span><span class="p">(</span><span class="n">csv_name</span><span class="p">)):</span> <span class="c1">#place.shape[0]</span>
     <span class="n">filename</span> <span class="o">=</span> <span class="n">csv_name</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
-    <span class="c1">#name = place[&#39;name&#39;][i]</span>
+    <span class="c1">#name = place['name'][i]</span>
     <span class="n">reviews</span> <span class="o">=</span> <span class="n">load_data</span><span class="p">(</span><span class="n">filename</span><span class="o">=</span><span class="n">filename</span><span class="p">)</span>
-    <span class="n">data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">reviews</span><span class="p">,</span> <span class="n">how</span><span class="o">=</span><span class="s1">&#39;outer&#39;</span><span class="p">)</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">reviews</span><span class="p">,</span> <span class="n">how</span><span class="o">=</span><span class="s1">'outer'</span><span class="p">)</span>
 </pre></div>
 
      </div>
@@ -15026,43 +15395,11 @@ body[data-format='mobile'] .jp-OutputArea-child .jp-OutputArea-output {
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-python"><pre><span></span><span class="n">data</span><span class="o">.</span><span class="n">shape</span>
-</pre></div>
-
-     </div>
-</div>
-</div>
-</div>
-
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
-<div class="jp-Cell-inputWrapper">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-     <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-python"><pre><span></span><span class="n">data</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
-</pre></div>
-
-     </div>
-</div>
-</div>
-</div>
-
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
-<div class="jp-Cell-inputWrapper">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-     <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-python"><pre><span></span><span class="n">data</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;d4r55&#39;</span><span class="p">:</span> <span class="s1">&#39;username&#39;</span><span class="p">,</span> 
-                            <span class="s1">&#39;RfnDt 2&#39;</span><span class="p">:</span> <span class="s1">&#39;contributions&#39;</span><span class="p">,</span>
-                            <span class="s1">&#39;rsqaWe&#39;</span><span class="p">:</span> <span class="s1">&#39;time&#39;</span><span class="p">,</span>
-                            <span class="s1">&#39;wiI7pd&#39;</span><span class="p">:</span> <span class="s1">&#39;review&#39;</span><span class="p">,</span>
-                            <span class="s1">&#39;kyuRq 2&#39;</span><span class="p">:</span> <span class="s1">&#39;language&#39;</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">data</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">{</span><span class="s1">'d4r55'</span><span class="p">:</span> <span class="s1">'username'</span><span class="p">,</span> 
+                            <span class="s1">'RfnDt 2'</span><span class="p">:</span> <span class="s1">'contributions'</span><span class="p">,</span>
+                            <span class="s1">'rsqaWe'</span><span class="p">:</span> <span class="s1">'time'</span><span class="p">,</span>
+                            <span class="s1">'wiI7pd'</span><span class="p">:</span> <span class="s1">'review'</span><span class="p">,</span>
+                            <span class="s1">'kyuRq 2'</span><span class="p">:</span> <span class="s1">'language'</span>
                             <span class="p">})</span>
 </pre></div>
 
@@ -15079,38 +15416,22 @@ body[data-format='mobile'] .jp-OutputArea-child .jp-OutputArea-output {
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-python"><pre><span></span><span class="n">data</span><span class="o">.</span><span class="n">info</span><span class="p">()</span>
-</pre></div>
-
-     </div>
-</div>
-</div>
-</div>
-
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
-<div class="jp-Cell-inputWrapper">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-     <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-python"><pre><span></span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;hCCjke src&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">*</span><span class="n">data</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">data</span><span class="p">[</span><span class="s1">'hCCjke src'</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">*</span><span class="n">data</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
     
-<span class="n">data</span><span class="p">[</span><span class="s1">&#39;hCCjke src 2&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;hCCjke src 2&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">replace</span><span class="p">({</span><span class="s1">&#39;https://maps.gstatic.com/consumer/images/icons/2x/ic_star_rate_14.png&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> 
-                                                 <span class="s1">&#39;https://maps.gstatic.com/consumer/images/icons/2x/ic_star_rate_empty_14.png&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">})</span>
-<span class="n">data</span><span class="p">[</span><span class="s1">&#39;hCCjke src 3&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;hCCjke src 3&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">replace</span><span class="p">({</span><span class="s1">&#39;https://maps.gstatic.com/consumer/images/icons/2x/ic_star_rate_14.png&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> 
-                                                 <span class="s1">&#39;https://maps.gstatic.com/consumer/images/icons/2x/ic_star_rate_empty_14.png&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">})</span>
-<span class="n">data</span><span class="p">[</span><span class="s1">&#39;hCCjke src 4&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;hCCjke src 4&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">replace</span><span class="p">({</span><span class="s1">&#39;https://maps.gstatic.com/consumer/images/icons/2x/ic_star_rate_14.png&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> 
-                                                 <span class="s1">&#39;https://maps.gstatic.com/consumer/images/icons/2x/ic_star_rate_empty_14.png&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">})</span>
-<span class="n">data</span><span class="p">[</span><span class="s1">&#39;hCCjke src 5&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;hCCjke src 5&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">replace</span><span class="p">({</span><span class="s1">&#39;https://maps.gstatic.com/consumer/images/icons/2x/ic_star_rate_14.png&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> 
-                                                 <span class="s1">&#39;https://maps.gstatic.com/consumer/images/icons/2x/ic_star_rate_empty_14.png&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">})</span>
+<span class="n">data</span><span class="p">[</span><span class="s1">'hCCjke src 2'</span><span class="p">]</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s1">'hCCjke src 2'</span><span class="p">]</span><span class="o">.</span><span class="n">replace</span><span class="p">({</span><span class="s1">'https://maps.gstatic.com/consumer/images/icons/2x/ic_star_rate_14.png'</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> 
+                                                 <span class="s1">'https://maps.gstatic.com/consumer/images/icons/2x/ic_star_rate_empty_14.png'</span><span class="p">:</span> <span class="mi">0</span><span class="p">})</span>
+<span class="n">data</span><span class="p">[</span><span class="s1">'hCCjke src 3'</span><span class="p">]</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s1">'hCCjke src 3'</span><span class="p">]</span><span class="o">.</span><span class="n">replace</span><span class="p">({</span><span class="s1">'https://maps.gstatic.com/consumer/images/icons/2x/ic_star_rate_14.png'</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> 
+                                                 <span class="s1">'https://maps.gstatic.com/consumer/images/icons/2x/ic_star_rate_empty_14.png'</span><span class="p">:</span> <span class="mi">0</span><span class="p">})</span>
+<span class="n">data</span><span class="p">[</span><span class="s1">'hCCjke src 4'</span><span class="p">]</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s1">'hCCjke src 4'</span><span class="p">]</span><span class="o">.</span><span class="n">replace</span><span class="p">({</span><span class="s1">'https://maps.gstatic.com/consumer/images/icons/2x/ic_star_rate_14.png'</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> 
+                                                 <span class="s1">'https://maps.gstatic.com/consumer/images/icons/2x/ic_star_rate_empty_14.png'</span><span class="p">:</span> <span class="mi">0</span><span class="p">})</span>
+<span class="n">data</span><span class="p">[</span><span class="s1">'hCCjke src 5'</span><span class="p">]</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s1">'hCCjke src 5'</span><span class="p">]</span><span class="o">.</span><span class="n">replace</span><span class="p">({</span><span class="s1">'https://maps.gstatic.com/consumer/images/icons/2x/ic_star_rate_14.png'</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> 
+                                                 <span class="s1">'https://maps.gstatic.com/consumer/images/icons/2x/ic_star_rate_empty_14.png'</span><span class="p">:</span> <span class="mi">0</span><span class="p">})</span>
 
-<span class="n">data</span><span class="p">[</span><span class="s1">&#39;rating&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">row</span><span class="p">:</span> <span class="n">row</span><span class="p">[</span><span class="s1">&#39;hCCjke src&#39;</span><span class="p">]</span> <span class="o">+</span> <span class="n">row</span><span class="p">[</span><span class="s1">&#39;hCCjke src 2&#39;</span><span class="p">]</span> <span class="o">+</span> <span class="n">row</span><span class="p">[</span><span class="s1">&#39;hCCjke src 3&#39;</span><span class="p">]</span> <span class="o">+</span> <span class="n">row</span><span class="p">[</span><span class="s1">&#39;hCCjke src 4&#39;</span><span class="p">]</span><span class="o">+</span> <span class="n">row</span><span class="p">[</span><span class="s1">&#39;hCCjke src 5&#39;</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">data</span><span class="p">[</span><span class="s1">'rating'</span><span class="p">]</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">row</span><span class="p">:</span> <span class="n">row</span><span class="p">[</span><span class="s1">'hCCjke src'</span><span class="p">]</span> <span class="o">+</span> <span class="n">row</span><span class="p">[</span><span class="s1">'hCCjke src 2'</span><span class="p">]</span> <span class="o">+</span> <span class="n">row</span><span class="p">[</span><span class="s1">'hCCjke src 3'</span><span class="p">]</span> <span class="o">+</span> <span class="n">row</span><span class="p">[</span><span class="s1">'hCCjke src 4'</span><span class="p">]</span><span class="o">+</span> <span class="n">row</span><span class="p">[</span><span class="s1">'hCCjke src 5'</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
 
-<span class="n">data</span><span class="p">[</span><span class="s1">&#39;language&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;language&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">,</span> <span class="s1">&#39;English&#39;</span><span class="p">)</span>
-<span class="n">data</span><span class="p">[</span><span class="s1">&#39;contributions&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="p">)</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39; reviews&#39;</span><span class="p">,</span><span class="s1">&#39;&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;contributions&#39;</span><span class="p">]]</span>
-<span class="n">data</span><span class="p">[</span><span class="s1">&#39;contributions&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="n">i</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;· &#39;</span><span class="p">,</span><span class="s1">&#39;&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;contributions&#39;</span><span class="p">]]</span>
+<span class="n">data</span><span class="p">[</span><span class="s1">'language'</span><span class="p">]</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s1">'language'</span><span class="p">]</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">,</span> <span class="s1">'English'</span><span class="p">)</span>
+<span class="n">data</span><span class="p">[</span><span class="s1">'contributions'</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="p">)</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">' reviews'</span><span class="p">,</span><span class="s1">''</span><span class="p">)</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">data</span><span class="p">[</span><span class="s1">'contributions'</span><span class="p">]]</span>
+<span class="n">data</span><span class="p">[</span><span class="s1">'contributions'</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="n">i</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">'· '</span><span class="p">,</span><span class="s1">''</span><span class="p">)</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">data</span><span class="p">[</span><span class="s1">'contributions'</span><span class="p">]]</span>
 </pre></div>
 
      </div>
@@ -15126,24 +15447,24 @@ body[data-format='mobile'] .jp-OutputArea-child .jp-OutputArea-output {
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-python"><pre><span></span><span class="k">def</span> <span class="nf">convert_date</span><span class="p">(</span><span class="n">date_str</span><span class="p">):</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">convert_date</span><span class="p">(</span><span class="n">date_str</span><span class="p">):</span>
     <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">date_str</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
-        <span class="k">if</span> <span class="n">date_str</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s1">&#39;ago&#39;</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">date_str</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s1">'ago'</span><span class="p">):</span>
             <span class="k">try</span><span class="p">:</span>
                 <span class="n">num</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">date_str</span><span class="o">.</span><span class="n">split</span><span class="p">()[</span><span class="mi">0</span><span class="p">])</span>
             <span class="k">except</span><span class="p">:</span>
                 <span class="n">num</span> <span class="o">=</span> <span class="mi">1</span>
-            <span class="k">if</span> <span class="s1">&#39;day&#39;</span> <span class="ow">in</span> <span class="n">date_str</span><span class="p">:</span>
-                <span class="k">return</span> <span class="p">(</span><span class="n">datetime</span><span class="o">.</span><span class="n">today</span><span class="p">()</span> <span class="o">-</span> <span class="n">timedelta</span><span class="p">(</span><span class="n">days</span><span class="o">=</span><span class="n">num</span><span class="p">))</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s1">&#39;%b %Y&#39;</span><span class="p">)</span>
-            <span class="k">elif</span> <span class="s1">&#39;week&#39;</span> <span class="ow">in</span> <span class="n">date_str</span><span class="p">:</span>
-                <span class="k">return</span> <span class="p">(</span><span class="n">datetime</span><span class="o">.</span><span class="n">today</span><span class="p">()</span> <span class="o">-</span> <span class="n">timedelta</span><span class="p">(</span><span class="n">weeks</span><span class="o">=</span><span class="n">num</span><span class="p">))</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s1">&#39;%b %Y&#39;</span><span class="p">)</span>
-            <span class="k">elif</span> <span class="s1">&#39;month&#39;</span> <span class="ow">in</span> <span class="n">date_str</span><span class="p">:</span>
-                <span class="k">return</span> <span class="p">(</span><span class="n">datetime</span><span class="o">.</span><span class="n">today</span><span class="p">()</span> <span class="o">-</span> <span class="n">timedelta</span><span class="p">(</span><span class="n">days</span><span class="o">=</span><span class="n">num</span><span class="o">*</span><span class="mi">30</span><span class="p">))</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s1">&#39;%b %Y&#39;</span><span class="p">)</span>
-            <span class="k">elif</span> <span class="s1">&#39;year&#39;</span> <span class="ow">in</span> <span class="n">date_str</span><span class="p">:</span>
-                <span class="k">return</span> <span class="p">(</span><span class="n">datetime</span><span class="o">.</span><span class="n">today</span><span class="p">()</span> <span class="o">-</span> <span class="n">timedelta</span><span class="p">(</span><span class="n">days</span><span class="o">=</span><span class="n">num</span><span class="o">*</span><span class="mi">365</span><span class="p">))</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s1">&#39;%b %Y&#39;</span><span class="p">)</span>
+            <span class="k">if</span> <span class="s1">'day'</span> <span class="ow">in</span> <span class="n">date_str</span><span class="p">:</span>
+                <span class="k">return</span> <span class="p">(</span><span class="n">datetime</span><span class="o">.</span><span class="n">today</span><span class="p">()</span> <span class="o">-</span> <span class="n">timedelta</span><span class="p">(</span><span class="n">days</span><span class="o">=</span><span class="n">num</span><span class="p">))</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s1">'%b %Y'</span><span class="p">)</span>
+            <span class="k">elif</span> <span class="s1">'week'</span> <span class="ow">in</span> <span class="n">date_str</span><span class="p">:</span>
+                <span class="k">return</span> <span class="p">(</span><span class="n">datetime</span><span class="o">.</span><span class="n">today</span><span class="p">()</span> <span class="o">-</span> <span class="n">timedelta</span><span class="p">(</span><span class="n">weeks</span><span class="o">=</span><span class="n">num</span><span class="p">))</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s1">'%b %Y'</span><span class="p">)</span>
+            <span class="k">elif</span> <span class="s1">'month'</span> <span class="ow">in</span> <span class="n">date_str</span><span class="p">:</span>
+                <span class="k">return</span> <span class="p">(</span><span class="n">datetime</span><span class="o">.</span><span class="n">today</span><span class="p">()</span> <span class="o">-</span> <span class="n">timedelta</span><span class="p">(</span><span class="n">days</span><span class="o">=</span><span class="n">num</span><span class="o">*</span><span class="mi">30</span><span class="p">))</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s1">'%b %Y'</span><span class="p">)</span>
+            <span class="k">elif</span> <span class="s1">'year'</span> <span class="ow">in</span> <span class="n">date_str</span><span class="p">:</span>
+                <span class="k">return</span> <span class="p">(</span><span class="n">datetime</span><span class="o">.</span><span class="n">today</span><span class="p">()</span> <span class="o">-</span> <span class="n">timedelta</span><span class="p">(</span><span class="n">days</span><span class="o">=</span><span class="n">num</span><span class="o">*</span><span class="mi">365</span><span class="p">))</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s1">'%b %Y'</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span>
 
-<span class="n">data</span><span class="p">[</span><span class="s1">&#39;time&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="n">convert_date</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;time&#39;</span><span class="p">]]</span>
+<span class="n">data</span><span class="p">[</span><span class="s1">'time'</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="n">convert_date</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">data</span><span class="p">[</span><span class="s1">'time'</span><span class="p">]]</span>
 </pre></div>
 
      </div>
@@ -15159,10 +15480,11 @@ body[data-format='mobile'] .jp-OutputArea-child .jp-OutputArea-output {
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-python"><pre><span></span><span class="n">keep_columns</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;attraction&#39;</span><span class="p">,</span><span class="s1">&#39;username&#39;</span><span class="p">,</span><span class="s1">&#39;contributions&#39;</span><span class="p">,</span> <span class="s1">&#39;time&#39;</span><span class="p">,</span><span class="s1">&#39;review&#39;</span><span class="p">,</span><span class="s1">&#39;rating&#39;</span><span class="p">]</span> <span class="c1">#,&#39;language&#39;</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">keep_columns</span> <span class="o">=</span> <span class="p">[</span><span class="s1">'attraction'</span><span class="p">,</span><span class="s1">'username'</span><span class="p">,</span><span class="s1">'contributions'</span><span class="p">,</span> <span class="s1">'time'</span><span class="p">,</span><span class="s1">'review'</span><span class="p">,</span><span class="s1">'rating'</span><span class="p">]</span> <span class="c1">#,'language'</span>
 
 <span class="c1"># Keep only the specified columns</span>
 <span class="n">google_reviews</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">loc</span><span class="p">[:,</span> <span class="n">keep_columns</span><span class="p">]</span>
+<span class="n">google_reviews</span><span class="o">.</span><span class="n">dropna</span><span class="p">(</span><span class="n">subset</span><span class="o">=</span><span class="p">[</span><span class="s1">'review'</span><span class="p">],</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </pre></div>
 
      </div>
@@ -15170,7 +15492,7 @@ body[data-format='mobile'] .jp-OutputArea-child .jp-OutputArea-output {
 </div>
 </div>
 
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -15178,7 +15500,7 @@ body[data-format='mobile'] .jp-OutputArea-child .jp-OutputArea-output {
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-python"><pre><span></span><span class="n">google_reviews</span><span class="o">.</span><span class="n">info</span><span class="p">()</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">google_reviews</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
 </pre></div>
 
      </div>
@@ -15186,21 +15508,102 @@ body[data-format='mobile'] .jp-OutputArea-child .jp-OutputArea-output {
 </div>
 </div>
 
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
-<div class="jp-Cell-inputWrapper">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
 </div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-     <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-python"><pre><span></span><span class="n">google_reviews</span><span class="o">.</span><span class="n">dropna</span><span class="p">(</span><span class="n">subset</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;review&#39;</span><span class="p">],</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="n">google_reviews</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
-</pre></div>
 
-     </div>
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[&nbsp;]:</div>
+
+
+
+<div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/html">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>attraction</th>
+      <th>username</th>
+      <th>contributions</th>
+      <th>time</th>
+      <th>review</th>
+      <th>rating</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Adventure Playground</td>
+      <td>jackie</td>
+      <td>117</td>
+      <td>Dec 2022</td>
+      <td>Wasn’t able to go in, however the structure is...</td>
+      <td>4.0</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Adventure Playground</td>
+      <td>Julia Gidwani</td>
+      <td>125</td>
+      <td>Feb 2023</td>
+      <td>Keep an eye on your kids and let them go wild ...</td>
+      <td>5.0</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Adventure Playground</td>
+      <td>Nathan Pierce</td>
+      <td>72</td>
+      <td>Feb 2023</td>
+      <td>When I was a kid we somehow had wood around an...</td>
+      <td>5.0</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>Adventure Playground</td>
+      <td>Harry Jung</td>
+      <td>444</td>
+      <td>Jan 2023</td>
+      <td>Great playground for age 5+. Kids can be explo...</td>
+      <td>4.0</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>Adventure Playground</td>
+      <td>V Tancredi</td>
+      <td>227</td>
+      <td>Dec 2022</td>
+      <td>Very creative and unique free play area at the...</td>
+      <td>5.0</td>
+    </tr>
+  </tbody>
+</table>
 </div>
 </div>
+
+</div>
+
+</div>
+
 </div>
 
 </div>
