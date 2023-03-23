@@ -36,7 +36,6 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 .highlight .m { color: var(--jp-mirror-editor-number-color) } /* Literal.Number */
 .highlight .s { color: var(--jp-mirror-editor-string-color) } /* Literal.String */
 .highlight .ow { color: var(--jp-mirror-editor-operator-color); font-weight: bold } /* Operator.Word */
-.highlight .pm { color: var(--jp-mirror-editor-punctuation-color) } /* Punctuation.Marker */
 .highlight .w { color: var(--jp-mirror-editor-variable-color) } /* Text.Whitespace */
 .highlight .mb { color: var(--jp-mirror-editor-number-color) } /* Literal.Number.Bin */
 .highlight .mf { color: var(--jp-mirror-editor-number-color) } /* Literal.Number.Float */
@@ -14465,6 +14464,10 @@ a.anchor-link {
   display: none;
 }
 
+.highlight  {
+  margin: 0.4em;
+}
+
 /* Input area styling */
 .jp-InputArea {
   overflow: hidden;
@@ -14474,26 +14477,9 @@ a.anchor-link {
   overflow: hidden;
 }
 
-.CodeMirror.cm-s-jupyter .highlight pre {
-/* weird, but --jp-code-padding defined to be 5px but 4px horizontal padding is hardcoded for pre.CodeMirror-line */
-  padding: var(--jp-code-padding) 4px;
+.CodeMirror pre {
   margin: 0;
-
-  font-family: inherit;
-  font-size: inherit;
-  line-height: inherit;
-  color: inherit;
-
-}
-
-.jp-OutputArea-output pre {
-  line-height: inherit;
-  font-family: inherit;
-}
-
-.jp-RenderedText pre {
-  color: var(--jp-content-font-color1);
-  font-size: var(--jp-code-font-size);
+  padding: 0;
 }
 
 /* Using table instead of flexbox so that we can use break-inside property */
@@ -14605,7 +14591,7 @@ body[data-format='mobile'] .jp-OutputArea-child .jp-OutputArea-output {
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-python"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 </pre></div>
 
@@ -14633,20 +14619,20 @@ body[data-format='mobile'] .jp-OutputArea-child .jp-OutputArea-output {
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-python"><pre><span></span><span class="k">def</span> <span class="nf">load_data</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="n">platform</span><span class="p">):</span>
-    <span class="n">data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span>
-    <span class="n">data</span><span class="p">[</span><span class="s1">&#39;platform&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="n">platform</span><span class="p">]</span><span class="o">*</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">load_data</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="n">platform</span><span class="p">):</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="sa">f</span><span class="s1">'/Users/alliewu/Desktop/DataScience_Projects/STA220_sentiment-analysis/data/</span><span class="si">{</span><span class="n">filename</span><span class="si">}</span><span class="s1">'</span><span class="p">)</span>
+    <span class="n">data</span><span class="p">[</span><span class="s1">'platform'</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="n">platform</span><span class="p">]</span><span class="o">*</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
     <span class="k">return</span> <span class="n">data</span>
 
 <span class="c1"># load in location information data</span>
-<span class="n">tplaces</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;SF_places.csv&#39;</span><span class="p">)</span>
-<span class="n">gplaces</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;new_google_places.csv&#39;</span><span class="p">)</span>
-<span class="n">yplaces</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;yelp_business.csv&#39;</span><span class="p">)</span>
+<span class="n">tplaces</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">'/Users/alliewu/Desktop/DataScience_Projects/STA220_sentiment-analysis/data/SF_places.csv'</span><span class="p">)</span>
+<span class="n">gplaces</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">'/Users/alliewu/Desktop/DataScience_Projects/STA220_sentiment-analysis/data/new_google_places.csv'</span><span class="p">)</span>
+<span class="n">yplaces</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">'/Users/alliewu/Desktop/DataScience_Projects/STA220_sentiment-analysis/data/yelp_business.csv'</span><span class="p">)</span>
 
 <span class="c1"># load in reviews data</span>
-<span class="n">treviews</span> <span class="o">=</span> <span class="n">load_data</span><span class="p">(</span><span class="s1">&#39;tripadvisor_reviews.csv&#39;</span><span class="p">,</span> <span class="n">platform</span><span class="o">=</span><span class="s1">&#39;TripAdvisor&#39;</span><span class="p">)</span>
-<span class="n">greviews</span> <span class="o">=</span> <span class="n">load_data</span><span class="p">(</span><span class="s1">&#39;new_google_reviews.csv&#39;</span><span class="p">,</span> <span class="n">platform</span><span class="o">=</span><span class="s1">&#39;Google&#39;</span><span class="p">)</span>
-<span class="n">yreviews</span> <span class="o">=</span> <span class="n">load_data</span><span class="p">(</span><span class="s1">&#39;yelp_reviews.csv&#39;</span><span class="p">,</span> <span class="n">platform</span><span class="o">=</span><span class="s1">&#39;Yelp&#39;</span><span class="p">)</span>
+<span class="n">treviews</span> <span class="o">=</span> <span class="n">load_data</span><span class="p">(</span><span class="s1">'tripadvisor_reviews.csv'</span><span class="p">,</span> <span class="n">platform</span><span class="o">=</span><span class="s1">'TripAdvisor'</span><span class="p">)</span>
+<span class="n">greviews</span> <span class="o">=</span> <span class="n">load_data</span><span class="p">(</span><span class="s1">'new_google_reviews.csv'</span><span class="p">,</span> <span class="n">platform</span><span class="o">=</span><span class="s1">'Google'</span><span class="p">)</span>
+<span class="n">yreviews</span> <span class="o">=</span> <span class="n">load_data</span><span class="p">(</span><span class="s1">'yelp_reviews.csv'</span><span class="p">,</span> <span class="n">platform</span><span class="o">=</span><span class="s1">'Yelp'</span><span class="p">)</span>
 </pre></div>
 
      </div>
@@ -14676,7 +14662,7 @@ body[data-format='mobile'] .jp-OutputArea-child .jp-OutputArea-output {
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -14684,7 +14670,7 @@ body[data-format='mobile'] .jp-OutputArea-child .jp-OutputArea-output {
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-python"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">treviews</span><span class="o">.</span><span class="n">info</span><span class="p">())</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">treviews</span><span class="o">.</span><span class="n">info</span><span class="p">())</span>
 <span class="nb">print</span><span class="p">()</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">greviews</span><span class="o">.</span><span class="n">info</span><span class="p">())</span>
 </pre></div>
@@ -14692,6 +14678,63 @@ body[data-format='mobile'] .jp-OutputArea-child .jp-OutputArea-output {
      </div>
 </div>
 </div>
+</div>
+
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
+
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
+<pre>&lt;class &#39;pandas.core.frame.DataFrame&#39;&gt;
+RangeIndex: 7500 entries, 0 to 7499
+Data columns (total 11 columns):
+ #   Column        Non-Null Count  Dtype  
+---  ------        --------------  -----  
+ 0   attraction    7500 non-null   object 
+ 1   username      7500 non-null   object 
+ 2   city          7500 non-null   object 
+ 3   country       7500 non-null   object 
+ 4   contribution  7500 non-null   object 
+ 5   title         7500 non-null   object 
+ 6   month         7500 non-null   object 
+ 7   year          7500 non-null   object 
+ 8   review        7416 non-null   object 
+ 9   rating        7500 non-null   float64
+ 10  platform      7500 non-null   object 
+dtypes: float64(1), object(10)
+memory usage: 644.7+ KB
+None
+
+&lt;class &#39;pandas.core.frame.DataFrame&#39;&gt;
+RangeIndex: 2361 entries, 0 to 2360
+Data columns (total 7 columns):
+ #   Column         Non-Null Count  Dtype  
+---  ------         --------------  -----  
+ 0   attraction     2361 non-null   object 
+ 1   username       2357 non-null   object 
+ 2   contributions  2361 non-null   object 
+ 3   time           2360 non-null   object 
+ 4   review         2361 non-null   object 
+ 5   rating         1715 non-null   float64
+ 6   platform       2361 non-null   object 
+dtypes: float64(1), object(6)
+memory usage: 129.2+ KB
+None
+</pre>
+</div>
+</div>
+
+</div>
+
 </div>
 
 </div>
@@ -14705,7 +14748,7 @@ body[data-format='mobile'] .jp-OutputArea-child .jp-OutputArea-output {
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -14713,7 +14756,7 @@ body[data-format='mobile'] .jp-OutputArea-child .jp-OutputArea-output {
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-python"><pre><span></span><span class="n">yreviews</span><span class="o">.</span><span class="n">info</span><span class="p">()</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">yreviews</span><span class="o">.</span><span class="n">info</span><span class="p">()</span>
 </pre></div>
 
      </div>
@@ -14721,7 +14764,44 @@ body[data-format='mobile'] .jp-OutputArea-child .jp-OutputArea-output {
 </div>
 </div>
 
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
+
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
+<pre>&lt;class &#39;pandas.core.frame.DataFrame&#39;&gt;
+RangeIndex: 150 entries, 0 to 149
+Data columns (total 8 columns):
+ #   Column        Non-Null Count  Dtype 
+---  ------        --------------  ----- 
+ 0   id            150 non-null    object
+ 1   url           150 non-null    object
+ 2   text          150 non-null    object
+ 3   rating        150 non-null    int64 
+ 4   time_created  150 non-null    object
+ 5   user          150 non-null    object
+ 6   business_id   150 non-null    object
+ 7   platform      150 non-null    object
+dtypes: int64(1), object(7)
+memory usage: 9.5+ KB
+</pre>
+</div>
+</div>
+
+</div>
+
+</div>
+
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -14729,12 +14809,57 @@ body[data-format='mobile'] .jp-OutputArea-child .jp-OutputArea-output {
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-python"><pre><span></span><span class="n">yplaces</span><span class="o">.</span><span class="n">info</span><span class="p">()</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">yplaces</span><span class="o">.</span><span class="n">info</span><span class="p">()</span>
 </pre></div>
 
      </div>
 </div>
 </div>
+</div>
+
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
+
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
+<pre>&lt;class &#39;pandas.core.frame.DataFrame&#39;&gt;
+RangeIndex: 50 entries, 0 to 49
+Data columns (total 16 columns):
+ #   Column         Non-Null Count  Dtype  
+---  ------         --------------  -----  
+ 0   id             50 non-null     object 
+ 1   alias          50 non-null     object 
+ 2   name           50 non-null     object 
+ 3   image_url      50 non-null     object 
+ 4   is_closed      50 non-null     bool   
+ 5   url            50 non-null     object 
+ 6   review_count   50 non-null     int64  
+ 7   categories     50 non-null     object 
+ 8   rating         50 non-null     float64
+ 9   coordinates    50 non-null     object 
+ 10  transactions   50 non-null     object 
+ 11  price          46 non-null     object 
+ 12  location       50 non-null     object 
+ 13  phone          49 non-null     float64
+ 14  display_phone  49 non-null     object 
+ 15  distance       50 non-null     float64
+dtypes: bool(1), float64(3), int64(1), object(11)
+memory usage: 6.0+ KB
+</pre>
+</div>
+</div>
+
+</div>
+
 </div>
 
 </div>
@@ -14748,7 +14873,7 @@ body[data-format='mobile'] .jp-OutputArea-child .jp-OutputArea-output {
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -14756,7 +14881,7 @@ body[data-format='mobile'] .jp-OutputArea-child .jp-OutputArea-output {
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-python"><pre><span></span><span class="n">ymerge</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">yreviews</span><span class="p">,</span> <span class="n">yplaces</span><span class="p">,</span> <span class="n">left_on</span><span class="o">=</span><span class="s1">&#39;business_id&#39;</span><span class="p">,</span> <span class="n">right_on</span><span class="o">=</span><span class="s1">&#39;id&#39;</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">ymerge</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">yreviews</span><span class="p">,</span> <span class="n">yplaces</span><span class="p">,</span> <span class="n">left_on</span><span class="o">=</span><span class="s1">'business_id'</span><span class="p">,</span> <span class="n">right_on</span><span class="o">=</span><span class="s1">'id'</span><span class="p">)</span>
 <span class="n">ymerge</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
 </pre></div>
 
@@ -14765,7 +14890,196 @@ body[data-format='mobile'] .jp-OutputArea-child .jp-OutputArea-output {
 </div>
 </div>
 
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[&nbsp;]:</div>
+
+
+
+<div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/html">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>id_x</th>
+      <th>url_x</th>
+      <th>text</th>
+      <th>rating_x</th>
+      <th>time_created</th>
+      <th>user</th>
+      <th>business_id</th>
+      <th>platform</th>
+      <th>id_y</th>
+      <th>alias</th>
+      <th>...</th>
+      <th>review_count</th>
+      <th>categories</th>
+      <th>rating_y</th>
+      <th>coordinates</th>
+      <th>transactions</th>
+      <th>price</th>
+      <th>location</th>
+      <th>phone</th>
+      <th>display_phone</th>
+      <th>distance</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>XeBZmAzdhswpWiQYe6sTcw</td>
+      <td>https://www.yelp.com/biz/bi-rite-creamery-san-...</td>
+      <td>Got the Earl Gray + Pina colada and it was SO ...</td>
+      <td>5</td>
+      <td>2023-03-12 11:26:29</td>
+      <td>{'id': 'J_iJFYQp5y8fwcz-BdUEDQ', 'profile_url'...</td>
+      <td>wGl_DyNxSv8KUtYgiuLhmA</td>
+      <td>Yelp</td>
+      <td>wGl_DyNxSv8KUtYgiuLhmA</td>
+      <td>bi-rite-creamery-san-francisco</td>
+      <td>...</td>
+      <td>10031</td>
+      <td>[{'alias': 'icecream', 'title': 'Ice Cream &amp; F...</td>
+      <td>4.5</td>
+      <td>{'latitude': 37.761591, 'longitude': -122.425717}</td>
+      <td>['delivery']</td>
+      <td>$$</td>
+      <td>{'address1': '3692 18th St', 'address2': None,...</td>
+      <td>1.415627e+10</td>
+      <td>(415) 626-5600</td>
+      <td>946.386739</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>FuF8jvLV0olpgWbNQ2jHZg</td>
+      <td>https://www.yelp.com/biz/bi-rite-creamery-san-...</td>
+      <td>My review is not on the ice cream. The ice cre...</td>
+      <td>1</td>
+      <td>2023-03-19 16:50:01</td>
+      <td>{'id': 'T_yEM-V-vmbODnGqUGi--g', 'profile_url'...</td>
+      <td>wGl_DyNxSv8KUtYgiuLhmA</td>
+      <td>Yelp</td>
+      <td>wGl_DyNxSv8KUtYgiuLhmA</td>
+      <td>bi-rite-creamery-san-francisco</td>
+      <td>...</td>
+      <td>10031</td>
+      <td>[{'alias': 'icecream', 'title': 'Ice Cream &amp; F...</td>
+      <td>4.5</td>
+      <td>{'latitude': 37.761591, 'longitude': -122.425717}</td>
+      <td>['delivery']</td>
+      <td>$$</td>
+      <td>{'address1': '3692 18th St', 'address2': None,...</td>
+      <td>1.415627e+10</td>
+      <td>(415) 626-5600</td>
+      <td>946.386739</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>ruuEFbw8S0wQKZ9UN0-8tg</td>
+      <td>https://www.yelp.com/biz/bi-rite-creamery-san-...</td>
+      <td>2/25/2023 - A delicious end to our date night ...</td>
+      <td>5</td>
+      <td>2023-02-26 01:34:44</td>
+      <td>{'id': '84oPkNdCcisrtOmYK_ACwA', 'profile_url'...</td>
+      <td>wGl_DyNxSv8KUtYgiuLhmA</td>
+      <td>Yelp</td>
+      <td>wGl_DyNxSv8KUtYgiuLhmA</td>
+      <td>bi-rite-creamery-san-francisco</td>
+      <td>...</td>
+      <td>10031</td>
+      <td>[{'alias': 'icecream', 'title': 'Ice Cream &amp; F...</td>
+      <td>4.5</td>
+      <td>{'latitude': 37.761591, 'longitude': -122.425717}</td>
+      <td>['delivery']</td>
+      <td>$$</td>
+      <td>{'address1': '3692 18th St', 'address2': None,...</td>
+      <td>1.415627e+10</td>
+      <td>(415) 626-5600</td>
+      <td>946.386739</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>eBDHqdq65uP6JAMs24q3tQ</td>
+      <td>https://www.yelp.com/biz/brendas-french-soul-f...</td>
+      <td>Many French toast shops do not handle it prope...</td>
+      <td>5</td>
+      <td>2023-03-03 22:55:42</td>
+      <td>{'id': '5TpUy6HRIDhH3JvQlm8LBA', 'profile_url'...</td>
+      <td>lJAGnYzku5zSaLnQ_T6_GQ</td>
+      <td>Yelp</td>
+      <td>lJAGnYzku5zSaLnQ_T6_GQ</td>
+      <td>brendas-french-soul-food-san-francisco-6</td>
+      <td>...</td>
+      <td>11992</td>
+      <td>[{'alias': 'breakfast_brunch', 'title': 'Break...</td>
+      <td>4.0</td>
+      <td>{'latitude': 37.78291531984934, 'longitude': -...</td>
+      <td>['delivery']</td>
+      <td>$$</td>
+      <td>{'address1': '652 Polk St', 'address2': '', 'a...</td>
+      <td>1.415346e+10</td>
+      <td>(415) 345-8100</td>
+      <td>2893.406622</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>IXYJkV13UIjG21CMMMy8kQ</td>
+      <td>https://www.yelp.com/biz/brendas-french-soul-f...</td>
+      <td>First and foremost, let's talk about Brenda's ...</td>
+      <td>5</td>
+      <td>2023-03-09 18:43:35</td>
+      <td>{'id': 'qizLZcjOtLwk9v-pjMn2sg', 'profile_url'...</td>
+      <td>lJAGnYzku5zSaLnQ_T6_GQ</td>
+      <td>Yelp</td>
+      <td>lJAGnYzku5zSaLnQ_T6_GQ</td>
+      <td>brendas-french-soul-food-san-francisco-6</td>
+      <td>...</td>
+      <td>11992</td>
+      <td>[{'alias': 'breakfast_brunch', 'title': 'Break...</td>
+      <td>4.0</td>
+      <td>{'latitude': 37.78291531984934, 'longitude': -...</td>
+      <td>['delivery']</td>
+      <td>$$</td>
+      <td>{'address1': '652 Polk St', 'address2': '', 'a...</td>
+      <td>1.415346e+10</td>
+      <td>(415) 345-8100</td>
+      <td>2893.406622</td>
+    </tr>
+  </tbody>
+</table>
+<p>5 rows × 24 columns</p>
+</div>
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -14773,12 +15087,12 @@ body[data-format='mobile'] .jp-OutputArea-child .jp-OutputArea-output {
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-python"><pre><span></span><span class="n">y_keep_columns</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;platform&#39;</span><span class="p">,</span><span class="s1">&#39;text&#39;</span><span class="p">,</span><span class="s1">&#39;rating_x&#39;</span><span class="p">,</span> <span class="s1">&#39;time_created&#39;</span><span class="p">,</span> <span class="s1">&#39;name&#39;</span><span class="p">,</span> <span class="s1">&#39;coordinates&#39;</span><span class="p">]</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">y_keep_columns</span> <span class="o">=</span> <span class="p">[</span><span class="s1">'platform'</span><span class="p">,</span><span class="s1">'text'</span><span class="p">,</span><span class="s1">'rating_x'</span><span class="p">,</span> <span class="s1">'time_created'</span><span class="p">,</span> <span class="s1">'name'</span><span class="p">,</span> <span class="s1">'coordinates'</span><span class="p">]</span>
 <span class="n">yreviews_new</span> <span class="o">=</span> <span class="n">ymerge</span><span class="o">.</span><span class="n">loc</span><span class="p">[:,</span> <span class="n">y_keep_columns</span><span class="p">]</span>
-<span class="n">yreviews_new</span> <span class="o">=</span> <span class="n">yreviews_new</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="s1">&#39;attraction&#39;</span><span class="p">,</span> 
-                            <span class="s1">&#39;text&#39;</span><span class="p">:</span> <span class="s1">&#39;review&#39;</span><span class="p">,</span>
-                            <span class="s1">&#39;rating_x&#39;</span><span class="p">:</span> <span class="s1">&#39;rating&#39;</span><span class="p">,</span>
-                            <span class="s1">&#39;time_created&#39;</span><span class="p">:</span> <span class="s1">&#39;date&#39;</span>
+<span class="n">yreviews_new</span> <span class="o">=</span> <span class="n">yreviews_new</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">{</span><span class="s1">'name'</span><span class="p">:</span> <span class="s1">'attraction'</span><span class="p">,</span> 
+                            <span class="s1">'text'</span><span class="p">:</span> <span class="s1">'review'</span><span class="p">,</span>
+                            <span class="s1">'rating_x'</span><span class="p">:</span> <span class="s1">'rating'</span><span class="p">,</span>
+                            <span class="s1">'time_created'</span><span class="p">:</span> <span class="s1">'date'</span>
                             <span class="p">})</span>
 <span class="n">yreviews_new</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
 </pre></div>
@@ -14786,6 +15100,104 @@ body[data-format='mobile'] .jp-OutputArea-child .jp-OutputArea-output {
      </div>
 </div>
 </div>
+</div>
+
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[&nbsp;]:</div>
+
+
+
+<div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/html">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>platform</th>
+      <th>review</th>
+      <th>rating</th>
+      <th>date</th>
+      <th>attraction</th>
+      <th>coordinates</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Yelp</td>
+      <td>Got the Earl Gray + Pina colada and it was SO ...</td>
+      <td>5</td>
+      <td>2023-03-12 11:26:29</td>
+      <td>Bi-Rite Creamery</td>
+      <td>{'latitude': 37.761591, 'longitude': -122.425717}</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Yelp</td>
+      <td>My review is not on the ice cream. The ice cre...</td>
+      <td>1</td>
+      <td>2023-03-19 16:50:01</td>
+      <td>Bi-Rite Creamery</td>
+      <td>{'latitude': 37.761591, 'longitude': -122.425717}</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Yelp</td>
+      <td>2/25/2023 - A delicious end to our date night ...</td>
+      <td>5</td>
+      <td>2023-02-26 01:34:44</td>
+      <td>Bi-Rite Creamery</td>
+      <td>{'latitude': 37.761591, 'longitude': -122.425717}</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>Yelp</td>
+      <td>Many French toast shops do not handle it prope...</td>
+      <td>5</td>
+      <td>2023-03-03 22:55:42</td>
+      <td>Brenda's French Soul Food</td>
+      <td>{'latitude': 37.78291531984934, 'longitude': -...</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>Yelp</td>
+      <td>First and foremost, let's talk about Brenda's ...</td>
+      <td>5</td>
+      <td>2023-03-09 18:43:35</td>
+      <td>Brenda's French Soul Food</td>
+      <td>{'latitude': 37.78291531984934, 'longitude': -...</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+
+</div>
+
+</div>
+
 </div>
 
 </div>
@@ -14799,7 +15211,7 @@ body[data-format='mobile'] .jp-OutputArea-child .jp-OutputArea-output {
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -14807,8 +15219,8 @@ body[data-format='mobile'] .jp-OutputArea-child .jp-OutputArea-output {
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-python"><pre><span></span><span class="n">merge1</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">treviews</span><span class="p">,</span><span class="n">greviews</span><span class="p">,</span> <span class="n">how</span><span class="o">=</span><span class="s1">&#39;outer&#39;</span><span class="p">)</span>
-<span class="n">all_reviews</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">merge1</span><span class="p">,</span><span class="n">yreviews_new</span><span class="p">,</span> <span class="n">how</span><span class="o">=</span><span class="s1">&#39;outer&#39;</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">merge1</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">treviews</span><span class="p">,</span><span class="n">greviews</span><span class="p">,</span> <span class="n">how</span><span class="o">=</span><span class="s1">'outer'</span><span class="p">)</span>
+<span class="n">all_reviews</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">merge1</span><span class="p">,</span><span class="n">yreviews_new</span><span class="p">,</span> <span class="n">how</span><span class="o">=</span><span class="s1">'outer'</span><span class="p">)</span>
 <span class="n">all_reviews</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
 </pre></div>
 
@@ -14817,6 +15229,122 @@ body[data-format='mobile'] .jp-OutputArea-child .jp-OutputArea-output {
 </div>
 </div>
 
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[&nbsp;]:</div>
+
+
+
+<div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/html">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>attraction</th>
+      <th>username</th>
+      <th>city</th>
+      <th>country</th>
+      <th>contribution</th>
+      <th>title</th>
+      <th>month</th>
+      <th>year</th>
+      <th>review</th>
+      <th>rating</th>
+      <th>platform</th>
+      <th>contributions</th>
+      <th>time</th>
+      <th>date</th>
+      <th>coordinates</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Alcatraz Island</td>
+      <td>Amber N W</td>
+      <td>None</td>
+      <td>None</td>
+      <td>5</td>
+      <td>FUN FOR ALL AGES</td>
+      <td>Mar</td>
+      <td>2023</td>
+      <td>My family took the tour ( BUY TICKETS IN ADVAN...</td>
+      <td>5.0</td>
+      <td>TripAdvisor</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Alcatraz Island</td>
+      <td>Gord P</td>
+      <td>None</td>
+      <td>None</td>
+      <td>16</td>
+      <td>great tour</td>
+      <td>Feb</td>
+      <td>2023</td>
+      <td>This is a must stop if you are in San Fran!!! ...</td>
+      <td>5.0</td>
+      <td>TripAdvisor</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Alcatraz Island</td>
+      <td>Jess</td>
+      <td>None</td>
+      <td>None</td>
+      <td>4</td>
+      <td>Must See</td>
+      <td>Mar</td>
+      <td>2023</td>
+      <td>I did not expect to enjoy the tour as much as ...</td>
+      <td>5.0</td>
+      <td>TripAdvisor</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+
+</div>
+
+</div>
+
+</div>
+
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
@@ -14825,14 +15353,14 @@ body[data-format='mobile'] .jp-OutputArea-child .jp-OutputArea-output {
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-python"><pre><span></span><span class="n">all_reviews</span><span class="p">[</span><span class="s1">&#39;time2&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">all_reviews</span><span class="p">[</span><span class="s1">&#39;month&#39;</span><span class="p">]</span> <span class="o">+</span> <span class="s1">&#39; &#39;</span> <span class="o">+</span> <span class="n">all_reviews</span><span class="p">[</span><span class="s1">&#39;year&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">str</span><span class="p">)</span>
-<span class="n">all_reviews</span><span class="p">[</span><span class="s1">&#39;time2&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="s1">&#39;Jan 1900&#39;</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="n">all_reviews</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">all_reviews</span><span class="p">[</span><span class="s1">&#39;time2&#39;</span><span class="p">],</span> <span class="nb">format</span><span class="o">=</span><span class="s1">&#39;%b %Y&#39;</span><span class="p">,</span> <span class="n">errors</span><span class="o">=</span><span class="s1">&#39;coerce&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">isnull</span><span class="p">(),</span> <span class="s1">&#39;time2&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;Jan 1900&#39;</span>
-<span class="n">all_reviews</span><span class="p">[</span><span class="s1">&#39;time2&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">all_reviews</span><span class="p">[</span><span class="s1">&#39;time2&#39;</span><span class="p">],</span> <span class="nb">format</span><span class="o">=</span><span class="s1">&#39;%b %Y&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">dt</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s1">&#39;%b, %Y&#39;</span><span class="p">)</span>
-<span class="n">all_reviews</span><span class="p">[</span><span class="s1">&#39;time_merged&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">all_reviews</span><span class="p">[</span><span class="s1">&#39;time2&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">combine_first</span><span class="p">(</span><span class="n">all_reviews</span><span class="p">[</span><span class="s1">&#39;time&#39;</span><span class="p">])</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">all_reviews</span><span class="p">[</span><span class="s1">'time2'</span><span class="p">]</span> <span class="o">=</span> <span class="n">all_reviews</span><span class="p">[</span><span class="s1">'month'</span><span class="p">]</span> <span class="o">+</span> <span class="s1">' '</span> <span class="o">+</span> <span class="n">all_reviews</span><span class="p">[</span><span class="s1">'year'</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">str</span><span class="p">)</span>
+<span class="n">all_reviews</span><span class="p">[</span><span class="s1">'time2'</span><span class="p">]</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="s1">'Jan 1900'</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">all_reviews</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">all_reviews</span><span class="p">[</span><span class="s1">'time2'</span><span class="p">],</span> <span class="nb">format</span><span class="o">=</span><span class="s1">'%b %Y'</span><span class="p">,</span> <span class="n">errors</span><span class="o">=</span><span class="s1">'coerce'</span><span class="p">)</span><span class="o">.</span><span class="n">isnull</span><span class="p">(),</span> <span class="s1">'time2'</span><span class="p">]</span> <span class="o">=</span> <span class="s1">'Jan 1900'</span>
+<span class="n">all_reviews</span><span class="p">[</span><span class="s1">'time2'</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">all_reviews</span><span class="p">[</span><span class="s1">'time2'</span><span class="p">],</span> <span class="nb">format</span><span class="o">=</span><span class="s1">'%b %Y'</span><span class="p">)</span><span class="o">.</span><span class="n">dt</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s1">'%b, %Y'</span><span class="p">)</span>
+<span class="n">all_reviews</span><span class="p">[</span><span class="s1">'time_merged'</span><span class="p">]</span> <span class="o">=</span> <span class="n">all_reviews</span><span class="p">[</span><span class="s1">'time2'</span><span class="p">]</span><span class="o">.</span><span class="n">combine_first</span><span class="p">(</span><span class="n">all_reviews</span><span class="p">[</span><span class="s1">'time'</span><span class="p">])</span>
 
-<span class="n">all_reviews</span><span class="p">[</span><span class="s1">&#39;time3&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">all_reviews</span><span class="p">[</span><span class="s1">&#39;date&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">dt</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s1">&#39;%b, %Y&#39;</span><span class="p">)</span>
-<span class="n">all_reviews</span><span class="p">[</span><span class="s1">&#39;time_merged2&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">all_reviews</span><span class="p">[</span><span class="s1">&#39;time_merged&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">combine_first</span><span class="p">(</span><span class="n">all_reviews</span><span class="p">[</span><span class="s1">&#39;time3&#39;</span><span class="p">])</span>
+<span class="n">all_reviews</span><span class="p">[</span><span class="s1">'time3'</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">all_reviews</span><span class="p">[</span><span class="s1">'date'</span><span class="p">])</span><span class="o">.</span><span class="n">dt</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s1">'%b, %Y'</span><span class="p">)</span>
+<span class="n">all_reviews</span><span class="p">[</span><span class="s1">'time_merged2'</span><span class="p">]</span> <span class="o">=</span> <span class="n">all_reviews</span><span class="p">[</span><span class="s1">'time_merged'</span><span class="p">]</span><span class="o">.</span><span class="n">combine_first</span><span class="p">(</span><span class="n">all_reviews</span><span class="p">[</span><span class="s1">'time3'</span><span class="p">])</span>
 </pre></div>
 
      </div>
@@ -14840,7 +15368,7 @@ body[data-format='mobile'] .jp-OutputArea-child .jp-OutputArea-output {
 </div>
 </div>
 
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -14848,16 +15376,114 @@ body[data-format='mobile'] .jp-OutputArea-child .jp-OutputArea-output {
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-python"><pre><span></span><span class="n">all_reviews</span> <span class="o">=</span> <span class="n">all_reviews</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;time_merged2&#39;</span><span class="p">:</span> <span class="s1">&#39;datecolumn&#39;</span> <span class="p">})</span>
-<span class="n">all_keep_columns</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;platform&#39;</span><span class="p">,</span><span class="s1">&#39;attraction&#39;</span><span class="p">,</span><span class="s1">&#39;review&#39;</span><span class="p">,</span> <span class="s1">&#39;rating&#39;</span><span class="p">,</span><span class="s1">&#39;datecolumn&#39;</span><span class="p">,</span> <span class="s1">&#39;coordinates&#39;</span><span class="p">]</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">all_reviews</span> <span class="o">=</span> <span class="n">all_reviews</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">{</span><span class="s1">'time_merged2'</span><span class="p">:</span> <span class="s1">'datecolumn'</span> <span class="p">})</span>
+<span class="n">all_keep_columns</span> <span class="o">=</span> <span class="p">[</span><span class="s1">'platform'</span><span class="p">,</span><span class="s1">'attraction'</span><span class="p">,</span><span class="s1">'review'</span><span class="p">,</span> <span class="s1">'rating'</span><span class="p">,</span><span class="s1">'datecolumn'</span><span class="p">,</span> <span class="s1">'coordinates'</span><span class="p">]</span>
 <span class="n">all_reviews</span> <span class="o">=</span> <span class="n">all_reviews</span><span class="o">.</span><span class="n">loc</span><span class="p">[:,</span> <span class="n">all_keep_columns</span><span class="p">]</span>
-<span class="n">all_reviews</span><span class="p">[</span><span class="s1">&#39;datecolumn&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">all_reviews</span><span class="p">[</span><span class="s1">&#39;datecolumn&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;Jan, 1900&#39;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">)</span>
+<span class="n">all_reviews</span><span class="p">[</span><span class="s1">'datecolumn'</span><span class="p">]</span> <span class="o">=</span> <span class="n">all_reviews</span><span class="p">[</span><span class="s1">'datecolumn'</span><span class="p">]</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">'Jan, 1900'</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">)</span>
 <span class="n">all_reviews</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
 </pre></div>
 
      </div>
 </div>
 </div>
+</div>
+
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[&nbsp;]:</div>
+
+
+
+<div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/html">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>platform</th>
+      <th>attraction</th>
+      <th>review</th>
+      <th>rating</th>
+      <th>datecolumn</th>
+      <th>coordinates</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>TripAdvisor</td>
+      <td>Alcatraz Island</td>
+      <td>My family took the tour ( BUY TICKETS IN ADVAN...</td>
+      <td>5.0</td>
+      <td>Mar, 2023</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>TripAdvisor</td>
+      <td>Alcatraz Island</td>
+      <td>This is a must stop if you are in San Fran!!! ...</td>
+      <td>5.0</td>
+      <td>Feb, 2023</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>TripAdvisor</td>
+      <td>Alcatraz Island</td>
+      <td>I did not expect to enjoy the tour as much as ...</td>
+      <td>5.0</td>
+      <td>Mar, 2023</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>TripAdvisor</td>
+      <td>Alcatraz Island</td>
+      <td>San Francisco is completely unsafe. We bought ...</td>
+      <td>1.0</td>
+      <td>Mar, 2023</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>TripAdvisor</td>
+      <td>Alcatraz Island</td>
+      <td>I had a 13-hour layover in San Francisco And I...</td>
+      <td>4.0</td>
+      <td>Mar, 2023</td>
+      <td>NaN</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+
+</div>
+
+</div>
+
 </div>
 
 </div>
