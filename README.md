@@ -1,5 +1,6 @@
 # Exploring the Relationship Between Text and Rating: A Sentiment Analysis Study
 This is our final project for STA220 in winter 2023. A collaborative work with <a href="https://github.com/wswu001">WunSyuan Wu</a>.
+(GitHub page: https://yanyuchen.github.io/sentiment-analysis/)
 
 ## Overview
 The process of sentiment analysis involves employing natural language processing techniques to recognize, extract, measure, and investigate emotional states and subjective details. In this project, we aim to explore sentiment analysis and implement it on the review data collected from different platforms. In particular, we wonder if the text of reviews is helpful to reflect the rating.
@@ -13,13 +14,13 @@ In conclusion, this project aims to provide insights into the effectiveness of s
 ## Contents
 Our project is organized into separate Jupyter notebooks as follows.
 <ol>
-<li><a href="html/data.html">Data Acquisition</a></li>
-<li><a href="html/merge.html">Merge Data across Sources</a></li>
-<li><a href="html/eda.html"> Exploratory Data Analysis</a></li>
-<li><a href="html/naive.html">Naive Approach with Pre-trained Model</a></li>
-<li><a href="html/classifiers.html">Additional Classifiers</a></li>
-<li><a href="html/comparision.html">Comparision between Models</a></li>
-<li><a href="html/conclusions.html">Conclusions</a></li>
+<li><a href="ipynb/data_acquisition.ipynb">Data Acquisition</a></li>
+<li><a href="ipynb/data_merge.ipynb">Merge Data across Sources</a></li>
+<li><a href="ipynb/eda.ipynb"> Exploratory Data Analysis</a></li>
+<li><a href="ipynb/naive.ipynb">Naive Approach with Pre-trained Model</a></li>
+<li><a href="ipynb/classifiers.ipynb">Additional Classifiers</a></li>
+<li><a href="ipynb/comparison.ipynb">Comparison among Models</a></li>
+<li><a href="ipynb/conclusion.ipynb">Conclusion</a></li>
 </ol>
 
 The HTML template is provided by <a href = 'https://github.com/orderedlist'>orderedlist</a>. Syntax highlighting is provided on GitHub Pages by <a href = 'http://pygments.org'>Pygments</a>.
