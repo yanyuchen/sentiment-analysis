@@ -1,5 +1,6 @@
 # Exploring the Relationship Between Text and Rating: A Sentiment Analysis Study
-This is our final project for STA220 in winter 2023. A collaborative work with <a href="https://github.com/wswu001">WunSyuan Wu</a>. (GitHub page: https://yanyuchen.github.io/sentiment-analysis/)
+This is our final project for STA220 in winter 2023. A collaborative work with <a href="https://github.com/wswu001">WunSyuan Wu</a>. 
+(GitHub page: https://yanyuchen.github.io/sentiment-analysis/)
 
 ## Overview
 The process of sentiment analysis involves employing natural language processing techniques to recognize, extract, measure, and investigate emotional states and subjective details. In this project, we aim to explore sentiment analysis and implement it on the review data collected from different platforms. In particular, we wonder if the text of reviews is helpful to reflect the rating.
